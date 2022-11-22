@@ -31,6 +31,11 @@ const LandingRoutes = [
         component: () => import("@/views/landing/HomeView.vue"),
       },
       {
+        path: "/landinglogin",
+        name: "LandingLogin",
+        component: () => import("@/views/landing/HomeView.vue"),
+      },
+      {
         path: "/login",
         name: "login",
         component: () => import("@/views/landing/HomeView.vue"),

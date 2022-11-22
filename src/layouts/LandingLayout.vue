@@ -8,8 +8,8 @@ import NavBar from "@/components/template/landing/NavBar.vue";
 </script>
 <template>
     <!-- <ScrollToTop /> -->
-    <NavBar />
-    <div class="py-12 px-4">
+    <!-- <NavBar /> -->
+    <div class="py-0 px-4">
         <router-view />
     </div>
     <!-- <Footer /> -->

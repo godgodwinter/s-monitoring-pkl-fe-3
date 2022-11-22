@@ -16,13 +16,20 @@ const onSubmit = async () => {
 };
 </script>
 <template>
-    <div class="hero min-h-screen bg-base-100">
+    <div class=" w-full flex justify-center">
+        <div class="space-x-2 py-10 px-4 ">
+            <button class="btn btn-sm btn-secondary">Menu Siswa</button>
+            <button class="btn btn-sm btn-secondary">Menu Pembimbing Lapangan</button>
+            <button class="btn btn-sm btn-secondary">Menu Admin</button>
+        </div>
+    </div>
+    <div class="hero h-96 bg-base-100">
         <div class="hero-content flex-col lg:flex-row-reverse">
             <div class="text-center lg:text-left">
                 <h1 class="text-5xl font-bold">Login </h1>
                 <p class="py-6">Masuk Sebagai Guru.</p>
             </div>
-            <div class="cards w-full max-w-sm shadow-2xl bg-base-100">
+            <div class="cards w-full max-w-sm shadow-2xl bg-base-100 ">
                 <div class="card-body  flex justify-center ">
                     <div class="form-control">
                         <label class="label">
