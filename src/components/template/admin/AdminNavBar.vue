@@ -32,15 +32,17 @@ window.addEventListener("scroll", onScroll);
               Transaksi
             </button>
           </router-link> -->
+          <button
+            class="font-normal text-sm hover:link my-1 block capitalize px-4 border-r inline-block border-r-white last:border-none leading-tight">
+            Guru Pembimbing
+          </button>
         </div>
         <div class="py-2 border-r inline-block border-r-white last:border-none">
 
-          <!-- <router-link :to="{ name: 'admin-restok-tambah' }">
-            <button
-              class="font-normal text-sm hover:link my-1 block capitalize px-4 border-r inline-block border-r-white last:border-none leading-tight">
-              Restok
-            </button>
-          </router-link> -->
+          <button
+            class="font-normal text-sm hover:link my-1 block capitalize px-4 border-r inline-block border-r-white last:border-none leading-tight">
+            Kepala Jurusan
+          </button>
         </div>
 
         <button v-if="theme == 'cupcake'" @click="doUpdateTheme('dark')"
