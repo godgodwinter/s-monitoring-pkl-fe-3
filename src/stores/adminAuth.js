@@ -12,11 +12,15 @@ export const useStoreAdminAuth = defineStore({
       id: 0,
       name: "",
     },
+    kepalajurusan: false,
+    jurusan: [],
   }),
   getters: {
     getToken: (state) => state.token,
     getIsLogin: (state) => state.isLogin,
     getMe: (state) => state.me,
+    getKepalaJurusan: (state) => state.kepalajurusan,
+    getJurusan: (state) => state.jurusan,
   },
   actions: {
     setToken(tokeng) {
@@ -27,6 +31,12 @@ export const useStoreAdminAuth = defineStore({
     },
     setMe(me) {
       this.me = me;
+    },
+    setKepalaJurusan(kepalajurusan) {
+      this.kepalajurusan = kepalajurusan;
+    },
+    setJurusan(jurusan) {
+      this.jurusan = jurusan;
     },
   },
 });

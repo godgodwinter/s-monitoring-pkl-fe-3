@@ -13,6 +13,7 @@ const storeAdminAuth = useStoreAdminAuth();
 
 const pagesActive = computed(() => storeAdmin.pagesActive);
 const me = computed(() => storeAdminAuth.me);
+const kepalajurusan = computed(() => storeAdminAuth.kepalajurusan);
 const pagesActiveClass = ref("border-b  border-info rounded-full shadow-lg");
 
 const doLogout = async () => {
@@ -32,6 +33,8 @@ const getDataDetail = async () => {
     const response = await Api.post(`pembimbingsekolah/auth/profile`);
     // me.value = response.data.me;
     storeAdminAuth.setMe(response.data.me)
+    storeAdminAuth.setKepalaJurusan(response.data.kepalajurusan)
+    storeAdminAuth.setJurusan(response.data.jurusan)
     // console.log(me.value);
     return response.data;
   } catch (error) {
@@ -68,8 +71,11 @@ getDataDetail();
               </router-link> -->
             </div>
             <div class="flex justify-center flex-col">
-              <p class="text-base-content text-sm font-medium text-center link link-primary">
-                Administrator
+              <p class="text-base-content text-sm font-medium text-center link link-primary" v-if="kepalajurusan">
+                Kepala Jurusan
+              </p>
+              <p class="text-base-content text-sm font-medium text-center link link-primary" v-else>
+                Guru
               </p>
               <span class="py-2 hover:scale-125 tooltip mx-auto" data-tip="Logout" @click="doLogout()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -126,47 +132,62 @@ getDataDetail();
         </div>
       </li>
       <span class="py-2 "></span>
-      <label># Kepala Jurusan</label>
-      <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
-        <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+      <span v-if="kepalajurusan">
 
-          <span class="ml-3">Mastering Pembimbing Lapangan</span>
-        </div>
-      </li>
-      <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
-        <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+        <label># Kepala Jurusan</label>
+        <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
+          <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
 
-          <span class="ml-3">Mastering Tempat PKL</span>
-        </div>
-      </li>
-      <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
-        <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+            <span class="ml-3">Mastering Pembimbing Lapangan</span>
+          </div>
+        </li>
+        <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
+          <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
 
-          <span class="ml-3">Pendaftaran PKL</span>
-        </div>
-      </li>
-      <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
-        <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+            <span class="ml-3">Mastering Tempat PKL</span>
+          </div>
+        </li>
+        <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
+          <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
 
-          <span class="ml-3">Master Penilaian</span>
-        </div>
-      </li>
+            <span class="ml-3">Pendaftaran PKL</span>
+          </div>
+        </li>
+        <li :class="[pagesActive == 'penilaian-settings' ? pagesActiveClass : '']">
+
+          <router-link :to="{ name: 'admin-penilaian-settings' }"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+
+            <span class="ml-3">Settings Penilaian</span>
+          </router-link>
+        </li>
+        <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
+
+          <router-link :to="{ name: 'admin-penilaian-settings' }"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+
+            <span class="ml-3">Master Penilaian</span>
+          </router-link>
+        </li>
+      </span>
       <!-- <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
         <router-link :to="{ name: 'admin-administrator' }">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
