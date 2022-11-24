@@ -13,6 +13,12 @@ import VueGoodTablePlugin from "vue-good-table-next";
 import vSelect from "vue-select";
 import { QuillEditor } from "@vueup/vue-quill";
 
+// style
+import "@vuepic/vue-datepicker/dist/main.css";
+import "vue-good-table-next/dist/vue-good-table-next.css";
+import "vue-select/dist/vue-select.css";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
+
 const app = createApp(App);
 
 const globalOptions = {
