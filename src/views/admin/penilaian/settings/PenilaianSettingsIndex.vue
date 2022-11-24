@@ -90,7 +90,7 @@ const doDeleteData = async (id, index) => {
     perPageDropdown: [10, 20, 50],
 }" styleClass="vgt-table striped bordered condensed" class="py-0">
             <template #table-actions>
-                <div class="space-x-1 space-y-1 gap-1">
+                <div class="space-x-1 space-y-1 gap-1" v-if="data.length < 1">
                     <router-link :to="{
                         name: 'admin-penilaian-settings-tambah',
                     }">
@@ -135,5 +135,16 @@ const doDeleteData = async (id, index) => {
                 </span>
             </template>
         </vue-good-table>
+    </div>
+    <div class="py-4">
+        <article class="prose prose-sm lg:prose-sm">
+            <h4>Catatan : </h4>
+            <p>
+                Setiap tahun pembelajaran satu jurusan hanya memiliki satu parrent penilaian.
+            </p>
+            <p>
+                Jadi jika sudah diinput sekali maka tidak dapat di input lagi.
+            </p>
+        </article>
     </div>
 </template>

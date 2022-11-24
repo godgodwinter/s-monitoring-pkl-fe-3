@@ -50,7 +50,7 @@ const validateDataSkor = (value) => {
   }
 
   if (value > 100) {
-    return "This field must be a number less than 100";
+    return "This field must be a number less than or equal 100";
   }
   if (value < 0) {
     return "This field must be a number greater than 0";
