@@ -19,20 +19,20 @@ window.addEventListener("scroll", onScroll);
 </script>
 <template>
   <div class="static">
-    <div class="fixed z-50 font-serif font-semibold text-sm py-2 text-center px-4 w-full" :class="{
+    <div class="fixed z-50 font-serif font-semibold text-sm py-2 lg:py-0 text-center px-4 w-full" :class="{
       'bg-base-content border-b border-none text-base-100  ': windowTop > 10,
       'bg-base-content bg-opacity-20 border-b text-primary-content border-white border-opacity-40':
         windowTop < 10,
     }">
       <div class="flex lg:justify-center px-10 mx-4 overflow-hidden w-full justify-center">
-        <div class="py-2 border-r inline-block border-r-white last:border-none">
-          <!-- <router-link :to="{ name: 'admin-transaksi-tambah' }">
+        <!-- <div class="py-2 border-r inline-block border-r-white last:border-none"> -->
+        <!-- <router-link :to="{ name: 'admin-transaksi-tambah' }">
             <button
               class="font-normal text-sm hover:link my-1 block capitalize px-4 border-r inline-block border-r-white last:border-none leading-tight">
               Transaksi
             </button>
           </router-link> -->
-          <button
+        <!-- <button
             class="font-normal text-sm hover:link my-1 block capitalize px-4 border-r inline-block border-r-white last:border-none leading-tight">
             Guru Pembimbing
           </button>
@@ -42,8 +42,8 @@ window.addEventListener("scroll", onScroll);
           <button
             class="font-normal text-sm hover:link my-1 block capitalize px-4 border-r inline-block border-r-white last:border-none leading-tight">
             Kepala Jurusan
-          </button>
-        </div>
+          </button> -->
+        <!-- </div> -->
 
         <!-- <button v-if="theme == 'cupcake'" @click="doUpdateTheme('dark')"
           class="font-normal text-sm hover:link my-1 block capitalize px-4 border-r last:border-none">

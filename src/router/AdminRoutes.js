@@ -34,6 +34,34 @@ const AdminRoutes = [
         component: () => import("@/views/admin/dashboard/DashboardIndex.vue"),
       },
       {
+        path: `${prefix}/tempatpkl`,
+        name: `${prefixName}tempatpkl`,
+        meta: {
+          title: "Profile",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Tempat PKL",
+            path: `${prefix}/tempatpkl`,
+            goto: `${prefixName}tempatpkl`,
+          },
+        },
+        component: () => import("@/views/admin/tempatpkl/TempatpklIndex.vue"),
+      },
+      {
+        path: `${prefix}/siswa`,
+        name: `${prefixName}siswa`,
+        meta: {
+          title: "Profile",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Tempat PKL",
+            path: `${prefix}/siswa`,
+            goto: `${prefixName}siswa`,
+          },
+        },
+        component: () => import("@/views/admin/siswa/SiswaIndex.vue"),
+      },
+      {
         path: `${prefix}/penilaian/settings`,
         name: `${prefixName}penilaian-settings`,
         meta: {

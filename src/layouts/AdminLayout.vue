@@ -46,7 +46,7 @@ if (token.value) {
     <NavBar />
     <!-- <ScrollToTop /> -->
     <!-- <ThemeBar /> -->
-    <div class="border-b-2 top-14 lg:top-14 relative">
+    <div class="border-b-2 top-14 lg:top-0 relative">
         <div class="drawer drawer-mobile bg-base-100">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content">

@@ -10,7 +10,7 @@ import { useRouter } from "vue-router";
 import Fungsi from "@/components/lib/FungsiCampur"
 const router = useRouter();
 const storeAdmin = useStoreAdmin();
-storeAdmin.setPagesActive("penilaian-settings");
+storeAdmin.setPagesActive("siswa");
 const columns = [
     {
         label: "Actions",
@@ -21,23 +21,13 @@ const columns = [
         thClass: "text-center",
     },
     {
-        label: "Penilaian Guru",
-        field: "penilaian_guru",
+        label: "Nama Siswa",
+        field: "nama",
         type: "String",
     },
     {
-        label: "Penilaian Pembimbing Lapangan",
-        field: "penilaian_pembimbinglapangan",
-        type: "String",
-    },
-    {
-        label: "Absensi",
-        field: "absensi",
-        type: "String",
-    },
-    {
-        label: "Jurnal",
-        field: "jurnal",
+        label: "Tempat PKL",
+        field: "tempatpkl_nama",
         type: "String",
     },
 ];
@@ -46,7 +36,7 @@ const dataAsli = ref([]);
 const data = ref([]);
 const getData = async () => {
     try {
-        const response = await Api.get(`guru/penilaian`);
+        const response = await Api.get(`guru/dataku/siswa`);
         dataAsli.value = response.data;
         data.value = response.data;
 
@@ -57,27 +47,27 @@ const getData = async () => {
 };
 getData();
 const doEditData = async (id, index) => {
-    // Toast.warning("Info", "Menu belum tersedia")
+    Toast.warning("Info", "Menu belum tersedia")
     // console.log(id, index);
-    router.push({
-        name: "admin-penilaian-settings-edit",
-        params: { id: id },
-    });
+    // router.push({
+    //     name: "admin-penilaian-settings-edit",
+    //     params: { id: id },
+    // });
 };
-const doDeleteData = async (id, index) => {
-    if (confirm("Apakah anda yakin menghapus data ini?")) {
-        try {
-            const response = await Api.delete(`guru/penilaian/${id}`);
-            // data.value.splice(index, 1);
-            Toast.success("Success", "Data Berhasil dihapus!");
-            getData();
-            // Toast.warning("Info", "Menu belum tersedia")
-            // return response.data;
-        } catch (error) {
-            console.error(error);
-        }
-    }
-};
+// const doDeleteData = async (id, index) => {
+//     if (confirm("Apakah anda yakin menghapus data ini?")) {
+//         try {
+//             const response = await Api.delete(`guru/penilaian/${id}`);
+//             // data.value.splice(index, 1);
+//             Toast.success("Success", "Data Berhasil dihapus!");
+//             getData();
+//             // Toast.warning("Info", "Menu belum tersedia")
+//             // return response.data;
+//         } catch (error) {
+//             console.error(error);
+//         }
+//     }
+// };
 
 
 const doPenilaianGuru = async (id, index) => {
@@ -110,7 +100,7 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
 }" styleClass="vgt-table striped bordered condensed" class="py-0">
             <template #table-actions>
                 <div class="space-x-1 space-y-1 gap-1" v-if="data.length < 1">
-                    <router-link :to="{
+                    <!-- <router-link :to="{
                         name: 'admin-penilaian-settings-tambah',
                     }">
                         <button class="btn btn-sm btn-primary tooltip" data-tip="Tambah ">
@@ -121,7 +111,7 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
                                     clip-rule="evenodd" />
                             </svg>
                         </button>
-                    </router-link>
+                    </router-link> -->
                 </div>
             </template>
             <template #table-row="props">
@@ -129,7 +119,7 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
                     <div class="text-sm font-medium text-center flex justify-center space-x-1">
                         <!-- <ButtonEdit @click="doEditData(props.row.id, props.index)" /> -->
                         <label class="space-y-1">
-                            <!-- <button @click="doEditData(props.row.id, props.index)"
+                            <button @click="doEditData(props.row.id, props.index)"
                                 class="tooltip text-sky-100 block rounded-md font-bold py-1 px-1 mr-2 flex items-center hover:text-sky-300 bg-sky-400 rounded-lg"
                                 data-tip="Detail">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -138,9 +128,9 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
                                         d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
                                 </svg>
 
-                            </button> -->
-                            <ButtonEdit @click="doEditData(props.row.id, props.index)" />
-                            <ButtonDelete @click="doDeleteData(props.row.id, props.index)" />
+                            </button>
+                            <!-- <ButtonEdit @click="doEditData(props.row.id, props.index)" /> -->
+                            <!-- <ButtonDelete @click="doDeleteData(props.row.id, props.index)" /> -->
                         </label>
                     </div>
                 </span>
@@ -171,7 +161,7 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
             </template>
         </vue-good-table>
     </div>
-    <div class="py-4">
+    <!-- <div class="py-4">
         <article class="prose prose-sm lg:prose-sm">
             <h4>Catatan : </h4>
             <p>
@@ -181,5 +171,5 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
                 Jadi jika sudah diinput sekali maka tidak dapat di input lagi.
             </p>
         </article>
-    </div>
+    </div> -->
 </template>
