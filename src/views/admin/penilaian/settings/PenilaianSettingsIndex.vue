@@ -90,12 +90,16 @@ const doPenilaianGuru = async (id, index) => {
 };
 
 const doPenilaianPembimbingLapangan = async (id, index) => {
-    Toast.warning("Info", "Menu belum tersedia")
-    console.log(id, index);
+    // Toast.warning("Info", "Menu belum tersedia")
+    // console.log(id, index);
     // router.push({
     //     name: "admin-penilaian-settings-edit",
     //     params: { id: id },
     // });
+    router.push({
+        name: "admin-penilaian-settings-pembimbinglapangan-index",
+        params: { id: id },
+    });
 };
 </script>
 <template>

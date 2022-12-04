@@ -153,7 +153,7 @@ const AdminRoutes = [
                 },
               },
             },
-            redirect: `${prefix}/penilaian/settings/:id/guru/index`, //bug :id
+            redirect: `${prefix}/penilaian/settings/:id/guru/index`,
             children: [
               {
                 path: `${prefix}/penilaian/settings/:id/guru/index`,
@@ -193,6 +193,70 @@ const AdminRoutes = [
                 component: () =>
                   import(
                     "@/views/admin/penilaian/settings/penilaian_guru/PenilaianGuruTambah.vue"
+                  ),
+              },
+            ],
+          },
+
+          {
+            path: `${prefix}/penilaian/settings/:id/pembimbinglapangan`,
+            name: `${prefixName}penilaian-settings-pembimbinglapangan`,
+            component: () =>
+              import(
+                "@/views/admin/penilaian/settings/penilaian_pembimbinglapangan/PenilaianPembimbinglapanganLayout.vue"
+              ),
+            meta: {
+              title: "Penilaian pembimbinglapangan",
+              icon: "mdi-home",
+              breadcrumb: {
+                name: "Penilaian pembimbinglapangan",
+                path: `${prefix}/penilaian/settings/:id?/pembimbinglapangan`,
+                goto: `${prefixName}penilaian-settings-pembimbinglapangan-index`,
+                params: {
+                  id: `:id`,
+                },
+              },
+            },
+            redirect: `${prefix}/penilaian/settings/:id/pembimbinglapangan/index`,
+            children: [
+              {
+                path: `${prefix}/penilaian/settings/:id/pembimbinglapangan/index`,
+                name: `${prefixName}penilaian-settings-pembimbinglapangan-index`,
+                meta: {
+                  title: "Penilaian Settings pembimbinglapangan",
+                  icon: "mdi-home",
+                  breadcrumb: {
+                    name: "Index",
+                    path: `${prefix}/penilaian/settings/:id/pembimbinglapangan/index`,
+                    goto: `${prefixName}penilaian-settings-pembimbinglapangan-index`,
+                    params: {
+                      id: `id`,
+                    },
+                  },
+                },
+                component: () =>
+                  import(
+                    "@/views/admin/penilaian/settings/penilaian_pembimbinglapangan/PenilaianPembimbinglapanganIndex.vue"
+                  ),
+              },
+              {
+                path: `${prefix}/penilaian/settings/:id/pembimbinglapangan/tambah`,
+                name: `${prefixName}penilaian-settings-pembimbinglapangan-tambah`,
+                meta: {
+                  title: "Penilaian Settings pembimbinglapangan",
+                  icon: "mdi-home",
+                  breadcrumb: {
+                    name: "tambah",
+                    path: `${prefix}/penilaian/settings/:id/pembimbinglapangan/tambah`,
+                    goto: `${prefixName}penilaian-settings-pembimbinglapangan-tambah`,
+                    params: {
+                      id: `id`,
+                    },
+                  },
+                },
+                component: () =>
+                  import(
+                    "@/views/admin/penilaian/settings/penilaian_pembimbinglapangan/PenilaianPembimbinglapanganTambah.vue"
                   ),
               },
             ],

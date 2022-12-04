@@ -6,7 +6,7 @@ const router = useRouter();
 const params = route.params;
 // console.log(route.meta);
 // console.log(route.matched);
-console.log(route.params);
+// console.log(route.params);
 const dataBreadcrumb = route.matched.map((item) => {
   return {
     data: item.meta.breadcrumb,

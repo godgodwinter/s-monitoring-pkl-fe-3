@@ -6,11 +6,13 @@ import { useStoreAdmin } from "@/stores/admin";
 import ButtonEdit from "@/components/Button/ButtonEdit.vue";
 import ButtonDelete from "@/components/Button/ButtonDel.vue";
 import Toast from "@/components/lib/Toast";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import Fungsi from "@/components/lib/FungsiCampur"
 const router = useRouter();
+const route = useRoute();
 const storeAdmin = useStoreAdmin();
 storeAdmin.setPagesActive("penilaian-settings");
+const id = route.params.id;
 const columns = [
     {
         label: "Actions",
@@ -101,7 +103,7 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
 <template>
     <BreadCrumb />
     <div>
-
+        {{ id }}
         <vue-good-table :line-numbers="true" :columns="columns" :rows="data" :search-options="{
             enabled: true,
         }" :pagination-options="{
@@ -109,9 +111,9 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
     perPageDropdown: [10, 20, 50],
 }" styleClass="vgt-table striped bordered condensed" class="py-0">
             <template #table-actions>
-                <div class="space-x-1 space-y-1 gap-1" v-if="data.length < 1">
+                <div class="space-x-1 space-y-1 gap-1">
                     <router-link :to="{
-                        name: 'admin-penilaian-settings-tambah',
+                        name: 'admin-penilaian-settings-pembimbinglapangan-tambah', params: { id }
                     }">
                         <button class="btn btn-sm btn-primary tooltip" data-tip="Tambah ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
