@@ -47,9 +47,9 @@ const LandingRoutes = [
       },
     ],
   },
-  {
-    path: "/:catchAll(.*)",
-    redirect: "/404",
-  },
+  // {
+  //   path: "/:catchAll(.*)",
+  //   redirect: "/404",
+  // },
 ];
 export default LandingRoutes;

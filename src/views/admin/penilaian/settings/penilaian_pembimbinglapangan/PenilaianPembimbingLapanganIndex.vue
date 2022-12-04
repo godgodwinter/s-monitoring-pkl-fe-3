@@ -81,12 +81,12 @@ const doDeleteData = async (id, index) => {
 
 
 const doPenilaianGuru = async (id, index) => {
-    // Toast.warning("Info", "Menu belum tersedia")
-    // console.log(id, index);
-    router.push({
-        name: "admin-penilaian-settings-guru-index",
-        params: { id: id },
-    });
+    Toast.warning("Info", "Menu belum tersedia")
+    console.log(id, index);
+    // router.push({
+    //     name: "admin-penilaian-settings-edit",
+    //     params: { id: id },
+    // });
 };
 
 const doPenilaianPembimbingLapangan = async (id, index) => {

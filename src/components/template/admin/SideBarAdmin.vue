@@ -122,7 +122,7 @@ getDataDetail();
           <span class="ml-3">Siswa</span>
         </router-link>
       </li>
-      <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
+      <!-- <li :class="[pagesActive == 'administrator' ? pagesActiveClass : '']">
         <div> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -131,7 +131,7 @@ getDataDetail();
 
           <span class="ml-3">Penilaian</span>
         </div>
-      </li>
+      </li> -->
       <span class="py-2 "></span>
       <span v-if="kepalajurusan">
 

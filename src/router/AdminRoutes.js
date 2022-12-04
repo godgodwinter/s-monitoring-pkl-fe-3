@@ -86,7 +86,7 @@ const AdminRoutes = [
               title: "Penilaian Settings",
               icon: "mdi-home",
               breadcrumb: {
-                name: "Penilaian Settings",
+                name: "Index",
                 path: `${prefix}/penilaian/settings/index`,
                 goto: `${prefixName}penilaian-settings-index`,
               },
@@ -95,6 +95,7 @@ const AdminRoutes = [
               import(
                 "@/views/admin/penilaian/settings/PenilaianSettingsIndex.vue"
               ),
+            children: [],
           },
           {
             path: `${prefix}/penilaian/settings/tambah`,
@@ -132,6 +133,69 @@ const AdminRoutes = [
               import(
                 "@/views/admin/penilaian/settings/PenilaianSettingsEdit.vue"
               ),
+          },
+          {
+            path: `${prefix}/penilaian/settings/:id/guru`,
+            name: `${prefixName}penilaian-settings-guru`,
+            component: () =>
+              import(
+                "@/views/admin/penilaian/settings/penilaian_guru/PenilaianGuruLayout.vue"
+              ),
+            meta: {
+              title: "Penilaian Guru",
+              icon: "mdi-home",
+              breadcrumb: {
+                name: "Penilaian Guru",
+                path: `${prefix}/penilaian/settings/:id?/guru`,
+                goto: `${prefixName}penilaian-settings-guru-index`,
+                params: {
+                  id: `:id`,
+                },
+              },
+            },
+            redirect: `${prefix}/penilaian/settings/:id/guru/index`, //bug :id
+            children: [
+              {
+                path: `${prefix}/penilaian/settings/:id/guru/index`,
+                name: `${prefixName}penilaian-settings-guru-index`,
+                meta: {
+                  title: "Penilaian Settings guru",
+                  icon: "mdi-home",
+                  breadcrumb: {
+                    name: "Index",
+                    path: `${prefix}/penilaian/settings/:id/guru/index`,
+                    goto: `${prefixName}penilaian-settings-guru-index`,
+                    params: {
+                      id: `id`,
+                    },
+                  },
+                },
+                component: () =>
+                  import(
+                    "@/views/admin/penilaian/settings/penilaian_guru/PenilaianGuruIndex.vue"
+                  ),
+              },
+              {
+                path: `${prefix}/penilaian/settings/:id/guru/tambah`,
+                name: `${prefixName}penilaian-settings-guru-tambah`,
+                meta: {
+                  title: "Penilaian Settings guru",
+                  icon: "mdi-home",
+                  breadcrumb: {
+                    name: "tambah",
+                    path: `${prefix}/penilaian/settings/:id/guru/tambah`,
+                    goto: `${prefixName}penilaian-settings-guru-tambah`,
+                    params: {
+                      id: `id`,
+                    },
+                  },
+                },
+                component: () =>
+                  import(
+                    "@/views/admin/penilaian/settings/penilaian_guru/PenilaianGuruTambah.vue"
+                  ),
+              },
+            ],
           },
         ],
       },
