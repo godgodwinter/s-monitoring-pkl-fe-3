@@ -33,7 +33,7 @@ const dataAsli = ref([]);
 const data = ref([]);
 const getData = async () => {
     try {
-        const response = await Api.get(`guru/datapenilaian/${id}/guru`);
+        const response = await Api.get(`guru/datapenilaian/${id}/pembimbinglapangan`);
         dataAsli.value = response.data;
         data.value = response.data;
 
@@ -43,18 +43,18 @@ const getData = async () => {
     }
 };
 getData();
-const doEditData = async (id, index) => {
+const doEditData = async (id2, index) => {
     // Toast.warning("Info", "Menu belum tersedia")
     // console.log(id, index);
     router.push({
-        name: "admin-penilaian-settings-edit",
-        params: { id: id },
+        name: "admin-penilaian-settings-pembimbinglapangan-edit",
+        params: { id: id, id2: id2 },
     });
 };
 const doDeleteData = async (data_id, index) => {
     if (confirm("Apakah anda yakin menghapus data ini?")) {
         try {
-            const response = await Api.delete(`guru/datapenilaian/${id}/guru/${data_id}`);
+            const response = await Api.delete(`guru/datapenilaian/${id}/pembimbinglapangan/${data_id}`);
             // data.value.splice(index, 1);
             Toast.success("Success", "Data Berhasil dihapus!");
             getData();
@@ -98,7 +98,7 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
             <template #table-actions>
                 <div class="space-x-1 space-y-1 gap-1">
                     <router-link :to="{
-                        name: 'admin-penilaian-settings-guru-tambah', params: { id }
+                        name: 'admin-penilaian-settings-pembimbinglapangan-tambah', params: { id }
                     }">
                         <button class="btn btn-sm btn-primary tooltip" data-tip="Tambah ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"

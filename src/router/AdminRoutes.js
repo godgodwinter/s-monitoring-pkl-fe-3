@@ -280,6 +280,23 @@ const AdminRoutes = [
                     "@/views/admin/penilaian/settings/penilaian_pembimbinglapangan/PenilaianPembimbinglapanganTambah.vue"
                   ),
               },
+              {
+                path: `${prefix}/penilaian/settings/:id/pembimbinglapangan/edit/:id2`,
+                name: `${prefixName}penilaian-settings-pembimbinglapangan-edit`,
+                meta: {
+                  title: "Penilaian Settings pembimbinglapangan",
+                  icon: "mdi-home",
+                  breadcrumb: {
+                    name: "edit",
+                    path: `${prefix}/penilaian/settings/:id/pembimbinglapangan/edit/:id2`,
+                    goto: `${prefixName}penilaian-settings-pembimbinglapangan-edit`,
+                  },
+                },
+                component: () =>
+                  import(
+                    "@/views/admin/penilaian/settings/penilaian_pembimbinglapangan/PenilaianPembimbinglapanganEdit.vue"
+                  ),
+              },
             ],
           },
         ],

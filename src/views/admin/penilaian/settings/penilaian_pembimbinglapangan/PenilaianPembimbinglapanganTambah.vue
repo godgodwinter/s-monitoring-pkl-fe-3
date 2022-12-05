@@ -29,11 +29,11 @@ const onSubmit = async (values) => {
     };
     // console.log(dataForm);
     try {
-        const response = await Api.post(`guru/datapenilaian/${id}/guru`, dataStore);
+        const response = await Api.post(`guru/datapenilaian/${id}/pembimbinglapangan`, dataStore);
         console.log(response);
         // data.id = response.id;
         Toast.success("Info", "Data berhasil ditambahkan!");
-        router.push({ name: "admin-penilaian-settings-guru-index", params: { id: id } });
+        router.push({ name: "admin-penilaian-settings-pembimbinglapangan-index", params: { id: id } });
 
         return true;
     } catch (error) {
