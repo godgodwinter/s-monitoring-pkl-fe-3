@@ -45,6 +45,11 @@ const columns = [
         field: "telp",
         type: "String",
     },
+    {
+        label: "Nilai Akhir",
+        field: "nilai_akhir",
+        type: "number",
+    },
 ];
 
 const dataAsli = ref([]);

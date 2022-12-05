@@ -60,9 +60,15 @@ getDataDetail();
         <div>
           <div class="flex flex-col justify-center w-full">
             <div class="flex justify-center gap-2 w-full">
-              <p class="text-base-content text-md font-semibold text-center py-2 capitalize">
-                {{ me.name }}
-              </p>
+              <article>
+
+                <p class="text-base-content text-md font-semibold text-center py-2 capitalize">
+                  {{ me.nama }}
+                </p>
+                <p class="text-base-content text-md font-semibold text-center py-2 capitalize">
+                  {{ me.nomeridentitas }}
+                </p>
+              </article>
               <!-- <router-link :to="{ name: 'admin-profile' }">
                 <span class="py-2 hover:scale-125 tooltip" data-tip="Update Profile">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
