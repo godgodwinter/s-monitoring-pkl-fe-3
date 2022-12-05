@@ -137,6 +137,13 @@ const onSubmitJurnal = async (values) => {
         console.error(error);
     }
 };
+
+const doLihatAbsensi = () => {
+    Toast.warning("info", "Menu Belum tersedia");
+}
+const doLihatJurnal = () => {
+    Toast.warning("info", "Menu Belum tersedia");
+}
 </script>
 <template>
     <BreadCrumb />
@@ -266,7 +273,7 @@ const onSubmitJurnal = async (values) => {
                     Nilai Absensi = {{ absensi ? absensi : "Belum diisi" }}
                 </p>
                 <div class="flex space-x-4">
-                    <button class="btn btn-sm btn-primary"> Lihat Rekap Absensi</button>
+                    <button class="btn btn-sm btn-primary" @click="doLihatAbsensi()"> Lihat Rekap Absensi</button>
                     <button class="btn btn-sm btn-success" @click="(formAbsensi = true)">Beri Nilai <svg
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
@@ -315,7 +322,7 @@ const onSubmitJurnal = async (values) => {
                     Nilai Jurnal = {{ jurnal ? jurnal : "Belum diisi" }}
                 </p>
                 <div class="flex space-x-4">
-                    <button class="btn btn-sm btn-primary">Lihat Rekap Jurnal</button>
+                    <button class="btn btn-sm btn-primary" @click="doLihatJurnal()">Lihat Rekap Jurnal</button>
                     <button class="btn btn-sm btn-success" @click="(formJurnal = true)">Beri Nilai <svg
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
