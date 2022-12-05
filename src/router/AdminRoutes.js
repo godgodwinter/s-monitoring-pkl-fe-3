@@ -195,6 +195,27 @@ const AdminRoutes = [
                     "@/views/admin/penilaian/settings/penilaian_guru/PenilaianGuruTambah.vue"
                   ),
               },
+              {
+                path: `${prefix}/penilaian/settings/:id/guru/edit/:id2`,
+                name: `${prefixName}penilaian-settings-guru-edit`,
+                meta: {
+                  title: "Penilaian Settings guru",
+                  icon: "mdi-home",
+                  breadcrumb: {
+                    name: "edit",
+                    path: `${prefix}/penilaian/settings/:id/guru/edit/:id2`,
+                    goto: `${prefixName}penilaian-settings-guru-edit`,
+                    params: {
+                      id: `id`,
+                      id2: `id2`,
+                    },
+                  },
+                },
+                component: () =>
+                  import(
+                    "@/views/admin/penilaian/settings/penilaian_guru/PenilaianGuruEdit.vue"
+                  ),
+              },
             ],
           },
 

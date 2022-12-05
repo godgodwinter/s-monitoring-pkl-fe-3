@@ -23,23 +23,8 @@ const columns = [
         thClass: "text-center",
     },
     {
-        label: "Penilaian Guru",
-        field: "penilaian_guru",
-        type: "String",
-    },
-    {
-        label: "Penilaian Pembimbing Lapangan",
-        field: "penilaian_pembimbinglapangan",
-        type: "String",
-    },
-    {
-        label: "Absensi",
-        field: "absensi",
-        type: "String",
-    },
-    {
-        label: "Jurnal",
-        field: "jurnal",
+        label: "Aspek",
+        field: "nama",
         type: "String",
     },
 ];
@@ -48,7 +33,7 @@ const dataAsli = ref([]);
 const data = ref([]);
 const getData = async () => {
     try {
-        const response = await Api.get(`guru/penilaian`);
+        const response = await Api.get(`guru/datapenilaian/${id}/guru`);
         dataAsli.value = response.data;
         data.value = response.data;
 
@@ -66,10 +51,10 @@ const doEditData = async (id, index) => {
         params: { id: id },
     });
 };
-const doDeleteData = async (id, index) => {
+const doDeleteData = async (data_id, index) => {
     if (confirm("Apakah anda yakin menghapus data ini?")) {
         try {
-            const response = await Api.delete(`guru/penilaian/${id}`);
+            const response = await Api.delete(`guru/datapenilaian/${id}/guru/${data_id}`);
             // data.value.splice(index, 1);
             Toast.success("Success", "Data Berhasil dihapus!");
             getData();
@@ -113,7 +98,7 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
             <template #table-actions>
                 <div class="space-x-1 space-y-1 gap-1">
                     <router-link :to="{
-                        name: 'admin-penilaian-settings-pembimbinglapangan-tambah', params: { id }
+                        name: 'admin-penilaian-settings-guru-tambah', params: { id }
                     }">
                         <button class="btn btn-sm btn-primary tooltip" data-tip="Tambah ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -172,16 +157,5 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
                 </span>
             </template>
         </vue-good-table>
-    </div>
-    <div class="py-4">
-        <article class="prose prose-sm lg:prose-sm">
-            <h4>Catatan : </h4>
-            <p>
-                Setiap tahun pembelajaran satu jurusan hanya memiliki satu parrent penilaian.
-            </p>
-            <p>
-                Jadi jika sudah diinput sekali maka tidak dapat di input lagi.
-            </p>
-        </article>
     </div>
 </template>

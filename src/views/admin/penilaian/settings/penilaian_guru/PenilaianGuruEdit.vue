@@ -21,6 +21,7 @@ const numberPattern = /\d+/g;
 const dataDetail = ref({});
 const dataForm = ref({});
 const id = route.params.id;
+const id2 = route.params.id2;
 
 const onSubmit = async (values) => {
     // console.log(values);
@@ -29,10 +30,10 @@ const onSubmit = async (values) => {
     };
     // console.log(dataForm);
     try {
-        const response = await Api.post(`guru/datapenilaian/${id}/guru`, dataStore);
-        console.log(response);
+        const response = await Api.put(`guru/datapenilaian/${id}/guru/${id2}`, dataStore);
+        // console.log(response);
         // data.id = response.id;
-        Toast.success("Info", "Data berhasil ditambahkan!");
+        Toast.success("Info", "Data berhasil diupdate!");
         router.push({ name: "admin-penilaian-settings-guru-index", params: { id: id } });
 
         return true;
@@ -40,6 +41,20 @@ const onSubmit = async (values) => {
         console.error(error);
     }
 };
+
+
+const getDataId = async () => {
+    try {
+        const response = await Api.get(`guru/datapenilaian/${id}/guru/${id2}`);
+        dataDetail.value.nama = response.data.nama;
+        // console.log(response);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+getDataId();
 </script>
 <template>
     <BreadCrumb />

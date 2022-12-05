@@ -25,18 +25,15 @@ const id = route.params.id;
 const onSubmit = async (values) => {
     // console.log(values);
     let dataStore = {
-        penilaian_guru: dataDetail.value.penilaian_guru,
-        penilaian_pembimbinglapangan: dataDetail.value.penilaian_pembimbinglapangan,
-        absensi: dataDetail.value.absensi,
-        jurnal: dataDetail.value.jurnal,
+        nama: dataDetail.value.nama,
     };
     // console.log(dataForm);
     try {
-        const response = await Api.post(`guru/penilaian`, dataStore);
+        const response = await Api.post(`guru/datapenilaian/${id}/guru`, dataStore);
         console.log(response);
         // data.id = response.id;
         Toast.success("Info", "Data berhasil ditambahkan!");
-        router.push({ name: "admin-penilaian-settings" });
+        router.push({ name: "admin-penilaian-settings-guru-index", params: { id: id } });
 
         return true;
     } catch (error) {
@@ -51,47 +48,11 @@ const onSubmit = async (values) => {
             <div class="py-2 lg:py-4 px-4">
                 <div class="space-y-4">
                     <div class="flex flex-col">
-                        <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Penilaian Guru</label>
-                        <Field v-model="dataDetail.penilaian_guru" :rules="fnValidasi.validateDataSkor" type="text"
-                            name="penilaian_guru" ref="penilaian_guru" class="input input-bordered md:w-full max-w-2xl"
-                            required />
+                        <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Nama Aspek</label>
+                        <Field v-model="dataDetail.nama" :rules="fnValidasi.validateData" type="text" name="nama"
+                            ref="nama" class="input input-bordered md:w-full max-w-2xl" required />
                         <div class="text-xs text-red-600 mt-1">
-                            {{ errors.penilaian_guru }}
-                        </div>
-                    </div>
-
-                </div>
-                <div class="space-y-4">
-                    <div class="flex flex-col">
-                        <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Penilaian Pembimbing
-                            lapangan</label>
-                        <Field v-model="dataDetail.penilaian_pembimbinglapangan" :rules="fnValidasi.validateDataSkor"
-                            type="text" name="penilaian_pembimbinglapangan" ref="penilaian_pembimbinglapangan"
-                            class="input input-bordered md:w-full max-w-2xl" required />
-                        <div class="text-xs text-red-600 mt-1">
-                            {{ errors.penilaian_pembimbinglapangan }}
-                        </div>
-                    </div>
-
-                </div>
-                <div class="space-y-4">
-                    <div class="flex flex-col">
-                        <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Penilaian Absensi</label>
-                        <Field v-model="dataDetail.absensi" :rules="fnValidasi.validateDataSkor" type="text"
-                            name="absensi" ref="absensi" class="input input-bordered md:w-full max-w-2xl" required />
-                        <div class="text-xs text-red-600 mt-1">
-                            {{ errors.absensi }}
-                        </div>
-                    </div>
-
-                </div>
-                <div class="space-y-4">
-                    <div class="flex flex-col">
-                        <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Penilaian Jurnal</label>
-                        <Field v-model="dataDetail.jurnal" :rules="fnValidasi.validateDataSkor" type="text"
-                            name="jurnal" ref="jurnal" class="input input-bordered md:w-full max-w-2xl" required />
-                        <div class="text-xs text-red-600 mt-1">
-                            {{ errors.jurnal }}
+                            {{ errors.nama }}
                         </div>
                     </div>
 

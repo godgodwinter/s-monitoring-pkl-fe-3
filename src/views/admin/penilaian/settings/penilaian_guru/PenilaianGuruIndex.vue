@@ -23,23 +23,8 @@ const columns = [
         thClass: "text-center",
     },
     {
-        label: "Penilaian Guru",
-        field: "penilaian_guru",
-        type: "String",
-    },
-    {
-        label: "Penilaian Pembimbing Lapangan",
-        field: "penilaian_pembimbinglapangan",
-        type: "String",
-    },
-    {
-        label: "Absensi",
-        field: "absensi",
-        type: "String",
-    },
-    {
-        label: "Jurnal",
-        field: "jurnal",
+        label: "Aspek",
+        field: "nama",
         type: "String",
     },
 ];
@@ -48,7 +33,7 @@ const dataAsli = ref([]);
 const data = ref([]);
 const getData = async () => {
     try {
-        const response = await Api.get(`guru/penilaian`);
+        const response = await Api.get(`guru/datapenilaian/${id}/guru`);
         dataAsli.value = response.data;
         data.value = response.data;
 
@@ -58,18 +43,18 @@ const getData = async () => {
     }
 };
 getData();
-const doEditData = async (id, index) => {
+const doEditData = async (id2, index) => {
     // Toast.warning("Info", "Menu belum tersedia")
     // console.log(id, index);
     router.push({
-        name: "admin-penilaian-settings-edit",
-        params: { id: id },
+        name: "admin-penilaian-settings-guru-edit",
+        params: { id: id, id2 },
     });
 };
-const doDeleteData = async (id, index) => {
+const doDeleteData = async (data_id, index) => {
     if (confirm("Apakah anda yakin menghapus data ini?")) {
         try {
-            const response = await Api.delete(`guru/penilaian/${id}`);
+            const response = await Api.delete(`guru/datapenilaian/${id}/guru/${data_id}`);
             // data.value.splice(index, 1);
             Toast.success("Success", "Data Berhasil dihapus!");
             getData();
@@ -172,16 +157,5 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
                 </span>
             </template>
         </vue-good-table>
-    </div>
-    <div class="py-4">
-        <article class="prose prose-sm lg:prose-sm">
-            <h4>Catatan : </h4>
-            <p>
-                Setiap tahun pembelajaran satu jurusan hanya memiliki satu parrent penilaian.
-            </p>
-            <p>
-                Jadi jika sudah diinput sekali maka tidak dapat di input lagi.
-            </p>
-        </article>
     </div>
 </template>
