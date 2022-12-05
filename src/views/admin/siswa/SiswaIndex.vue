@@ -41,8 +41,8 @@ const columns = [
         type: "String",
     },
     {
-        label: "Penilaian",
-        field: "penilaian",
+        label: "Telp",
+        field: "telp",
         type: "String",
     },
 ];
@@ -68,6 +68,12 @@ const doEditData = async (id, index) => {
     //     name: "admin-penilaian-settings-edit",
     //     params: { id: id },
     // });
+};
+const doDetailData = async (id, index) => {
+    router.push({
+        name: "admin-siswadetail-index",
+        params: { id: id },
+    });
 };
 // const doDeleteData = async (id, index) => {
 //     if (confirm("Apakah anda yakin menghapus data ini?")) {
@@ -133,12 +139,12 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
                 <span v-if="props.column.field == 'actions'">
                     <div class="text-sm font-medium text-center flex justify-center space-x-1">
                         <!-- <ButtonEdit @click="doEditData(props.row.id, props.index)" /> -->
-                        <label class="space-y-1">
-                            <button @click="doEditData(props.row.id, props.index)"
-                                class="tooltip text-sky-100 block rounded-md font-bold py-1 px-1 mr-2 flex items-center hover:text-sky-300 bg-sky-400 rounded-lg"
+                        <label class="flex">
+                            <button @click="doDetailData(props.row.id, props.index)"
+                                class="tooltip btn btn-xs btn-info block rounded-md font-bold py-1 px-1 mr-2 flex items-center  rounded-lg"
                                 data-tip="Detail">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
                                 </svg>

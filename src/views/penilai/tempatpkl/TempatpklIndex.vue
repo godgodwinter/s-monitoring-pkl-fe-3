@@ -10,7 +10,7 @@ import { useRouter } from "vue-router";
 import Fungsi from "@/components/lib/FungsiCampur"
 const router = useRouter();
 const storeAdmin = useStoreAdmin();
-storeAdmin.setPagesActive("tempatpkl");
+storeAdmin.setPagesActive("penilai-tempatpkl");
 const columns = [
     {
         label: "Actions",
@@ -41,7 +41,7 @@ const dataAsli = ref([]);
 const data = ref([]);
 const getData = async () => {
     try {
-        const response = await Api.get(`guru/dataku/tempatpkl`);
+        const response = await Api.get(`guru/dataku/penilai/tempatpkl`);
         dataAsli.value = response.data;
         data.value = response.data;
 
