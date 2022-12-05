@@ -13,6 +13,7 @@ export const useStoreAdminAuth = defineStore({
       name: "",
     },
     kepalajurusan: false,
+    penilai: false,
     jurusan: [],
   }),
   getters: {
@@ -20,6 +21,7 @@ export const useStoreAdminAuth = defineStore({
     getIsLogin: (state) => state.isLogin,
     getMe: (state) => state.me,
     getKepalaJurusan: (state) => state.kepalajurusan,
+    getPenilai: (state) => state.penilai,
     getJurusan: (state) => state.jurusan,
   },
   actions: {
@@ -34,6 +36,9 @@ export const useStoreAdminAuth = defineStore({
     },
     setKepalaJurusan(kepalajurusan) {
       this.kepalajurusan = kepalajurusan;
+    },
+    setPenilai(penilai) {
+      this.penilai = penilai;
     },
     setJurusan(jurusan) {
       this.jurusan = jurusan;
