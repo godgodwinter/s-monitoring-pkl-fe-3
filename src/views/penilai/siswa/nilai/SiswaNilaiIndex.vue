@@ -6,6 +6,9 @@ import { useRouter, useRoute } from "vue-router";
 import Toast from "@/components/lib/Toast";
 import { Form, Field } from "vee-validate";
 import fnValidasi from "@/components/lib/babengValidasi";
+import { useStoreAdmin } from "@/stores/admin";
+const storeAdmin = useStoreAdmin();
+storeAdmin.setPagesActive("penilai-siswa");
 const router = useRouter();
 const route = useRoute();
 const id = route.params.id;
@@ -76,12 +79,59 @@ const onSubmitAbsensi = async (values) => {
     };
     // console.log(dataForm);
     try {
-        // const response = await Api.post(`guru/penilaian`, dataStore);
+        const response = await Api.post(`guru/penilai/siswadetail/${id}/absensi`, dataStore);
         // console.log(response);
         // data.id = response.id;
-        // Toast.success("Info", "Data berhasil ditambahkan!");
+        Toast.success("Info", "Data berhasil ditambahkan!");
         // router.push({ name: "admin-penilaian-settings" });
-        Toast.warning("Info", "Menu belum tersedia")
+        // Toast.warning("Info", "Menu belum tersedia")
+        getData();
+        formAbsensi.value = false;
+        return true;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const dataFormPenilaianGuru = ref([]);
+const onSubmitPenilaianGuru = async (values) => {
+    console.log(formPenilaianGuru.value);
+    let dataStore = {
+        nilai: dataFormPenilaianGuru.value.nilai,
+        penilaian_guru_id: formPenilaianGuru.value.id,
+    };
+    // console.log(dataForm);
+    try {
+        const response = await Api.post(`guru/penilai/siswadetail/${id}/penilaian_guru`, dataStore);
+        // console.log(response);
+        // data.id = response.id;
+        Toast.success("Info", "Data berhasil ditambahkan!");
+        // router.push({ name: "admin-penilaian-settings" });
+        // Toast.warning("Info", "Menu belum tersedia")
+        getData();
+        formPenilaianGuru.value = false;
+        return true;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const dataFormJurnal = ref([]);
+const onSubmitJurnal = async (values) => {
+    // console.log(values);
+    let dataStore = {
+        nilai: dataFormJurnal.value.nilai,
+    };
+    // console.log(dataForm);
+    try {
+        const response = await Api.post(`guru/penilai/siswadetail/${id}/jurnal`, dataStore);
+        // console.log(response);
+        // data.id = response.id;
+        Toast.success("Info", "Data berhasil ditambahkan!");
+        // router.push({ name: "admin-penilaian-settings" });
+        // Toast.warning("Info", "Menu belum tersedia")
+        getData();
+        formJurnal.value = false;
         return true;
     } catch (error) {
         console.error(error);
@@ -176,14 +226,14 @@ const onSubmitAbsensi = async (values) => {
                     <!-- Form Penilaian Guru -->
 
                     <div v-if="formPenilaianGuru">
-                        <Form v-slot="{ errors }" @submit="onSubmitAbsensi">
+                        <Form v-slot="{ errors }" @submit="onSubmitPenilaianGuru">
                             <div class="py-2 lg:py-4 px-4">
                                 <div class="space-y-4">
                                     <div class="flex flex-col">
                                         <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Nilai
                                             {{ formPenilaianGuru.penilaian_nama }}</label>
-                                        <Field v-model="dataFormAbsensi.nilai" :rules="fnValidasi.validateDataSkor"
-                                            type="text" name="nilai" ref="nilai"
+                                        <Field v-model="dataFormPenilaianGuru.nilai"
+                                            :rules="fnValidasi.validateDataSkor" type="text" name="nilai" ref="nilai"
                                             class="input input-bordered md:w-full max-w-2xl" required />
                                         <div class="text-xs text-red-600 mt-1">
                                             {{ errors.nilai }}
@@ -262,7 +312,7 @@ const onSubmitAbsensi = async (values) => {
             <article class="prose w-full lg:w-2/3">
                 <h4>Jurnal</h4>
                 <p>
-                    Nilai Jurnal = {{ JURNAL ? JURNAL : "Belum diisi" }}
+                    Nilai Jurnal = {{ jurnal ? jurnal : "Belum diisi" }}
                 </p>
                 <div class="flex space-x-4">
                     <button class="btn btn-sm btn-primary">Lihat Rekap Jurnal</button>
@@ -279,13 +329,13 @@ const onSubmitAbsensi = async (values) => {
                 <!-- Form Jurnal -->
 
                 <div v-if="formJurnal">
-                    <Form v-slot="{ errors }" @submit="onSubmitAbsensi">
+                    <Form v-slot="{ errors }" @submit="onSubmitJurnal">
                         <div class="py-2 lg:py-4 px-4">
                             <div class="space-y-4">
                                 <div class="flex flex-col">
                                     <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Nilai
                                         Jurnal</label>
-                                    <Field v-model="dataFormAbsensi.nilai" :rules="fnValidasi.validateDataSkor"
+                                    <Field v-model="dataFormJurnal.nilai" :rules="fnValidasi.validateDataSkor"
                                         type="text" name="nilai" ref="nilai"
                                         class="input input-bordered md:w-full max-w-2xl" required />
                                     <div class="text-xs text-red-600 mt-1">
