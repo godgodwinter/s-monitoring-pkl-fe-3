@@ -34,6 +34,20 @@ const AdminRoutes = [
         component: () => import("@/views/admin/dashboard/DashboardIndex.vue"),
       },
       {
+        path: `${prefix}/pengumuman/detail/:id`,
+        name: `${prefixName}pengumuman-detail`,
+        meta: {
+          title: "Pengumuman",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Pengumuman",
+            path: `${prefix}/pengumuman/detail/:id`,
+            goto: `${prefixName}pengumuman-detail`,
+          },
+        },
+        component: () => import("@/views/admin/dashboard/PengumumanDetail.vue"),
+      },
+      {
         path: `${prefix}/tempatpkl`,
         name: `${prefixName}tempatpkl`,
         meta: {

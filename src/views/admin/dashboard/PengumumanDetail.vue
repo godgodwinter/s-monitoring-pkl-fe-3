@@ -6,8 +6,10 @@ import { useStoreAdmin } from "@/stores/admin";
 import { ref } from "vue";
 import moment from "moment/min/moment-with-locales";
 import localization from "moment/locale/id";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
+const route = useRoute();
+const id = route.params.id;
 moment.updateLocale("id", localization);
 const storeAdmin = useStoreAdmin();
 storeAdmin.setPagesActive("dashboard");
@@ -15,7 +17,7 @@ const dataAsli = ref([]);
 const data = ref([]);
 const getData = async () => {
     try {
-        const response = await Api.get(`guest/pengumuman`);
+        const response = await Api.get(`guest/pengumuman/${id}`);
         dataAsli.value = response.data;
         data.value = response.data;
 
@@ -30,9 +32,9 @@ function truncate(value, length) {
     return value.substring(0, 300);
 }
 
-const doPengumuman = (id) => {
+const doKembali = (id) => {
     router.push({
-        name: "admin-pengumuman-detail",
+        name: "admin-dashboard",
         params: { id: id },
     });
 }
@@ -40,23 +42,26 @@ const doPengumuman = (id) => {
 </script>
 <template>
     <BreadCrumb />
-    <article class="prose w-full lg:w-full">
-        <h4>Pengumuman</h4>
-    </article>
-    <div v-for="item, index in data" :key="item.id">
-        <div class="divider"></div>
-        <article class="prose">
-            <h3>{{ item.title }}</h3>
-            <div v-html="truncate(item.content)"></div>
-
-            <div class="flex justify-end w-full space-x-2">
-                <p>{{ moment(item.createdAt).format("DD MMMM YYYY HH:mm:ss") }}</p>
-                <button class="btn btn-md " @click="doPengumuman(item.id)"> Baca
-                    Selengkapnya</button>
-            </div>
-            <!-- ... -->
-        </article>
+    <div>
+        <button class="btn btn-md btn-dark" @click="doKembali()">Kembali</button>
     </div>
-    <div class="divider"></div>
+    <div v-if="data" class="py-10 px-10">
+        <article class="prose w-full lg:w-full">
+            <h4>{{ data.title }}</h4>
+        </article>
+        <div>
+            <div class="divider"></div>
+            <article class="prose">
+                <div v-html="data.content"></div>
+
+                <div class="flex justify-end w-full space-x-2">
+                    <p>{{ moment(data.createdAt).format("DD MMMM YYYY HH:mm:ss") }}</p>
+
+                </div>
+                <!-- ... -->
+            </article>
+        </div>
+        <div class="divider"></div>
+    </div>
 
 </template>
