@@ -12,145 +12,68 @@ storeAdmin.setPagesActive("penilai-siswa");
 const router = useRouter();
 const route = useRoute();
 const id = route.params.id;
-const absensi = ref(null);
-const jurnal = ref(null);
-const penilaian_guru = ref(null);
-const siswa = ref(null);
-const tempatpkl = ref(null);
-
-
+const dataSiswa = ref([]);
 const dataAsli = ref([]);
-const data = ref([]);
+const tempatpkl = ref([]);
+const anggota = ref([]);
+const pembimbinglapangan = ref([]);
+const pembimbingsekolah = ref([]);
+const status = ref([]);
+const dataPembayaran = ref([]);
 
-const columns = [
-    {
-        label: "Actions",
-        field: "actions",
-        sortable: false,
-        width: "50px",
-        tdClass: "text-center",
-        thClass: "text-center",
-    },
-    {
-        label: "Nama ",
-        field: "penilaian_nama",
-        type: "String",
-    },
-    {
-        label: "Nilai",
-        field: "nilai",
-        type: "number",
-    },
-];
-
-
-const getData = async () => {
+const getDataId = async () => {
     try {
-        const response = await Api.get(`guru/penilai/siswadetail/${id}`);
+        const response = await Api.get(`guru/datasiswa/profile/${id}`);
+        // console.log(response.data);
+        dataSiswa.value = response.data.siswa;
+        tempatpkl.value = response.data.tempatpkl;
+        anggota.value = response.data.anggota;
+        status.value = response.data.status;
         dataAsli.value = response.data;
-        data.value = response.data;
-        penilaian_guru.value = data.value.penilaian_guru;
-        absensi.value = data.value.absensi;
-        jurnal.value = data.value.jurnal;
-        siswa.value = data.value.siswa;
-        tempatpkl.value = data.value.tempatpkl;
-
-        return response.data;
+        // console.log(dataSiswa.value, tempatpkl.value, anggota.value, status.value);
+        // dataDetail.value.siswa.label = ` ${dataAsli.value.nama} `;
+        // dataSiswa.value.kelas = ` ${dataAsli.value.kelasdetail.kelas.tingkatan} ${dataAsli.value.kelasdetail.kelas.jurusan} ${dataAsli.value.kelasdetail.kelas.suffix} `;
+        return response;
     } catch (error) {
+        Toast.danger("Warning", "Token anda kadaluarsa! Silahkan login kembali");
         console.error(error);
     }
 };
-getData();
 
 
-const formPenilaianGuru = ref(false);
-const formAbsensi = ref(false);
-const formJurnal = ref(false);
-
-const doCetak = (id) => {
-    Toast.warning("Info", "Menu belum tersedia");
-};
-
-const dataFormAbsensi = ref([]);
-const onSubmitAbsensi = async (values) => {
-    // console.log(values);
-    let dataStore = {
-        nilai: dataFormAbsensi.value.nilai,
-    };
-    // console.log(dataForm);
+const getDataPembayaran = async () => {
     try {
-        const response = await Api.post(`guru/penilai/siswadetail/${id}/absensi`, dataStore);
-        // console.log(response);
-        // data.id = response.id;
-        Toast.success("Info", "Data berhasil ditambahkan!");
-        // router.push({ name: "admin-penilaian-settings" });
-        // Toast.warning("Info", "Menu belum tersedia")
-        getData();
-        formAbsensi.value = false;
-        return true;
+        const response = await Api.get(`admin/siswa/${id}`);
+        // console.log(response.data);
+        dataPembayaran.value = response.data;
+        return response;
     } catch (error) {
+        Toast.danger("Warning", "Token anda kadaluarsa! Silahkan login kembali");
         console.error(error);
     }
 };
+getDataId();
+getDataPembayaran();
 
-const dataFormPenilaianGuru = ref([]);
-const onSubmitPenilaianGuru = async (values) => {
-    console.log(formPenilaianGuru.value);
-    let dataStore = {
-        nilai: dataFormPenilaianGuru.value.nilai,
-        penilaian_guru_id: formPenilaianGuru.value.id,
-    };
-    // console.log(dataForm);
+const dataHasil = ref([]);
+const getDataHasil = async () => {
     try {
-        const response = await Api.post(`guru/penilai/siswadetail/${id}/penilaian_guru`, dataStore);
-        // console.log(response);
-        // data.id = response.id;
-        Toast.success("Info", "Data berhasil ditambahkan!");
-        // router.push({ name: "admin-penilaian-settings" });
-        // Toast.warning("Info", "Menu belum tersedia")
-        getData();
-        formPenilaianGuru.value = false;
-        return true;
+        const response = await Api.get(`admin/pkl/nilaiakhir/siswa/${id}`);
+        dataHasil.value = response.data;
+        return response;
     } catch (error) {
+        Toast.danger("Warning", "Token anda kadaluarsa! Silahkan login kembali");
         console.error(error);
     }
 };
-
-const dataFormJurnal = ref([]);
-const onSubmitJurnal = async (values) => {
-    // console.log(values);
-    let dataStore = {
-        nilai: dataFormJurnal.value.nilai,
-    };
-    // console.log(dataForm);
-    try {
-        const response = await Api.post(`guru/penilai/siswadetail/${id}/jurnal`, dataStore);
-        // console.log(response);
-        // data.id = response.id;
-        Toast.success("Info", "Data berhasil ditambahkan!");
-        // router.push({ name: "admin-penilaian-settings" });
-        // Toast.warning("Info", "Menu belum tersedia")
-        getData();
-        formJurnal.value = false;
-        return true;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-const doLihatAbsensi = () => {
-    Toast.warning("info", "Menu Belum tersedia");
-}
-const doLihatJurnal = () => {
-    Toast.warning("info", "Menu Belum tersedia");
-}
+getDataHasil();
 </script>
 <template>
     <BreadCrumb />
 
     <article class="prose w-full lg:w-2/3">
         <span class="">
-            <h4>Rekap Hasil PKL Siswa </h4>
+            <h4>Rekap Penilaian Siswa </h4>
             <!-- <button @click="doCetak(id)" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -158,11 +81,252 @@ const doLihatJurnal = () => {
                 </svg>
             </button> -->
         </span>
-        <span v-if="siswa">
-            <p>Nama : {{ siswa.nama }}</p>
-            <p>Kelas : {{ siswa.kelas_nama }}</p>
-            <p>Nomer Induk : {{ siswa.nomeridentitas }}</p>
+        <span v-if="dataSiswa">
+            <p>Nama : {{ dataSiswa.nama }}</p>
+            <p>Kelas : {{ dataSiswa.kelas_nama }}</p>
+            <p>Nomer Induk : {{ dataSiswa.nomeridentitas }}</p>
             <p>Tempat PKL : {{ tempatpkl.nama }}</p>
+            <p>Status PKL : {{ status }}</p>
+            <p>Pembayaran: {{ dataPembayaran.pembayaran_persen }} % </p>
+            <button class="btn btn-info" @click="doBeriNilai(id)">Cetak</button>
         </span>
     </article>
+
+    <div class="p-4" v-if="dataHasil">
+        <article class="prose w-full lg:w-2/3">
+            <h4>1. Penilaian Guru : {{ dataHasil.penilaian_guru_rekap }}</h4>
+        </article>
+
+        <div class="overflow-x-auto">
+            <table class="table table-compact w-full">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nama Aspek</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item, index in dataHasil.penilaian_guru" :key="item.id">
+                        <th>{{ index + 1 }}</th>
+                        <td>{{ item.nama }}</td>
+                        <td>{{ item.nilai }}</td>
+                    </tr>
+
+                    <tr>
+                        <th></th>
+                        <td>Rata-rata</td>
+                        <td>{{ dataHasil.penilaian_guru_avg }}</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>Persentase</td>
+                        <td>{{ dataHasil.penilaian_guru_setting_persentase }} %</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>Nilai Akhir</td>
+                        <td>{{ dataHasil.penilaian_guru_rekap }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Nama Aspek</th>
+                        <th>Nilai</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="p-4">
+        <article class="prose w-full lg:w-2/3">
+            <h4>2. Penilaian Pembimbing : {{ dataHasil.penilaian_pembimbinglapangan_rekap }}</h4>
+        </article>
+
+
+        <div class="overflow-x-auto">
+            <table class="table table-compact w-full">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nama Aspek</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item, index in dataHasil.penilaian_pembimbinglapangan" :key="item.id">
+                        <th>{{ index + 1 }}</th>
+                        <td>{{ item.nama }}</td>
+                        <td>{{ item.nilai }}</td>
+                    </tr>
+
+                    <tr>
+                        <th></th>
+                        <td>Rata-rata</td>
+                        <td>{{ dataHasil.penilaian_pembimbinglapangan_avg }}</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>Persentase</td>
+                        <td>{{ dataHasil.penilaian_pembimbinglapangan_setting_persentase }} %</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>Nilai Akhir</td>
+                        <td>{{ dataHasil.penilaian_pembimbinglapangan_rekap }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Nama Aspek</th>
+                        <th>Nilai</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="p-4">
+        <article class="prose w-full lg:w-2/3">
+            <h4>3. Nilai Absensi : {{ dataHasil.penilaian_absensi_rekap }}</h4>
+        </article>
+
+        <div class="overflow-x-auto">
+            <table class="table table-compact w-full">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nama Aspek</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>Nilai absensi</td>
+                        <td>{{ dataHasil.penilaian_absensi }} </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>Persentase</td>
+                        <td>{{ dataHasil.penilaian_absensi_setting_persentase }} %</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>Nilai Akhir</td>
+                        <td>{{ dataHasil.penilaian_absensi_rekap }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Nama Aspek</th>
+                        <th>Nilai</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+    <div class="p-4">
+        <article class="prose w-full lg:w-2/3">
+            <h4>4. Nilai Jurnal : {{ dataHasil.penilaian_jurnal_rekap }}</h4>
+        </article>
+
+        <div class="overflow-x-auto">
+            <table class="table table-compact w-full">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nama Aspek</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>Nilai Jurnal</td>
+                        <td>{{ dataHasil.penilaian_jurnal }} </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>Persentase</td>
+                        <td>{{ dataHasil.penilaian_jurnal_setting_persentase }} %</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>Nilai Akhir</td>
+                        <td>{{ dataHasil.penilaian_jurnal_rekap }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Nama Aspek</th>
+                        <th>Nilai</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+    <div class="p-4">
+        <article class="prose w-full lg:w-2/3">
+            <h4>Nilai Akhir : {{ dataHasil.nilaiakhir }}</h4>
+        </article>
+
+        <div class="overflow-x-auto">
+            <table class="table table-compact w-full">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nama Kategori</th>
+                        <th>Persentase</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>Penilaian Guru</td>
+                        <td>{{ dataHasil.penilaian_guru_setting_persentase }}</td>
+                        <td>{{ dataHasil.penilaian_guru_rekap }}</td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>Penilaian PembimbingLapangan</td>
+                        <td>{{ dataHasil.penilaian_pembimbinglapangan_setting_persentase }}</td>
+                        <td>{{ dataHasil.penilaian_pembimbinglapangan_rekap }}</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>Penilaian Absensi</td>
+                        <td>{{ dataHasil.penilaian_absensi_setting_persentase }}</td>
+                        <td>{{ dataHasil.penilaian_absensi_rekap }}</td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>Penilaian Jurnal</td>
+                        <td>{{ dataHasil.penilaian_jurnal_setting_persentase }}</td>
+                        <td>{{ dataHasil.penilaian_jurnal_rekap }}</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>Nilai Akhir</td>
+                        <td>{{ dataHasil.penilaian_nilaiakhir_setting_persentase }}</td>
+                        <td>{{ dataHasil.nilaiakhir }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Nama Kategori</th>
+                        <th>Persentase</th>
+                        <th>Nilai</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </template>
