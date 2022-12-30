@@ -1,4 +1,5 @@
 <script setup>
+const BASE_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL : "http://localhost:8000/";
 import Api from "@/axios/axios";
 import { ref } from "vue";
 import BreadCrumb from "@/components/breadcrumb/BabengBreadcrumb.vue"
@@ -67,6 +68,16 @@ const getDataHasil = async () => {
     }
 };
 getDataHasil();
+
+const doCetak = (id = id) => {
+    if (id === null) {
+        Toast.danger("Warning", "Data tidak valid!");
+    } else {
+        window.open(
+            `${BASE_URL}api/admin/pkl/nilaiakhir/siswa/${id}/cetak`
+        );
+    }
+};
 </script>
 <template>
     <BreadCrumb />
@@ -88,7 +99,7 @@ getDataHasil();
             <p>Tempat PKL : {{ tempatpkl.nama }}</p>
             <p>Status PKL : {{ status }}</p>
             <p>Pembayaran: {{ dataPembayaran.pembayaran_persen }} % </p>
-            <button class="btn btn-info" @click="doBeriNilai(id)">Cetak</button>
+            <button class="btn btn-info" @click="doCetak(id)">Cetak</button>
         </span>
     </article>
 

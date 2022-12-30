@@ -172,6 +172,41 @@ const AdminRoutes = [
 
       //GURU KEPALA JURUSAN
       {
+        path: `pages/kepalajurusan/pembimbinglapangan`,
+        name: `kepalajurusan-pembimbinglapangan`,
+        meta: {
+          title: "Mastering Pembimbing Lapangan",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Mastering Pembimbing Lapangan",
+            path: `pages/kepalajurusan/pembimbinglapangan`,
+            goto:`kepalajurusan-pembimbinglapangan`,
+          },
+        },
+        component: () =>
+          import(
+            "@/views/kepalajurusan/pembimbinglapangan/PembimbinglapanganIndex.vue"
+          )
+        },
+        
+      {
+        path: `pages/kepalajurusan/tempatpkl`,
+        name: `kepalajurusan-tempatpkl`,
+        meta: {
+          title: "Mastering Tempatpkl",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Mastering Tempatpkl",
+            path: `pages/kepalajurusan/tempatpkl`,
+            goto:`kepalajurusan-tempatpkl`,
+          },
+        },
+        component: () =>
+          import(
+            "@/views/kepalajurusan/tempatpkl/TempatpklIndex.vue"
+          )
+        },
+      {
         path: `${prefix}/penilaian/settings`,
         name: `${prefixName}penilaian-settings`,
         meta: {
