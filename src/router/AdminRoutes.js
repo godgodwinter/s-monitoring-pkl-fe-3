@@ -137,6 +137,36 @@ const AdminRoutes = [
             component: () =>
               import("@/views/admin/siswa/detail/SiswaDetailIndex.vue"),
           },
+          {
+            path: `${prefix}/siswa/:id/hasil`,
+            name: `${prefixName}siswa-hasil`,
+            meta: {
+              title: "Profile",
+              icon: "mdi-home",
+              breadcrumb: {
+                name: "Detail Nilai",
+                path: `${prefix}/siswa/:id/hasil`,
+                goto: `${prefixName}siswa-hasil`,
+              },
+            },
+            component: () =>
+              import("@/views/penilai/siswa/SiswaHasil.vue"),
+          },
+          {
+            path: `${prefix}/siswa/:id/absensi`,
+            name: `${prefixName}siswa-absensi`,
+            meta: {
+              title: "Profile",
+              icon: "mdi-home",
+              breadcrumb: {
+                name: "Detail Nilai",
+                path: `${prefix}/siswa/:id/absensi`,
+                goto: `${prefixName}siswa-absensi`,
+              },
+            },
+            component: () =>
+            import("@/views/penilai/siswa/SiswaAbsensi.vue"),
+          },
         ],
       },
 

@@ -31,13 +31,8 @@ const columns = [
         type: "String",
     },
     {
-        label: "Absensi",
+        label: "Absensi dan Jurnal",
         field: "absensi",
-        type: "String",
-    },
-    {
-        label: "Jurnal",
-        field: "jurnal",
         type: "String",
     },
     {
@@ -86,6 +81,18 @@ const doDetailData = async (id, index) => {
         params: { id: id },
     });
 };
+const doHasil = async (id, index) => {
+    router.push({
+        name: "admin-siswa-hasil",
+        params: { id: id },
+    });
+};
+const doAbsensi = async (id, index) => {
+    router.push({
+        name: "admin-siswa-absensi",
+        params: { id: id },
+    });
+};
 // const doDeleteData = async (id, index) => {
 //     if (confirm("Apakah anda yakin menghapus data ini?")) {
 //         try {
@@ -125,8 +132,8 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
     <div>
 
         <vue-good-table :line-numbers="true" :columns="columns" :rows="data" :search-options="{
-            enabled: true,
-        }" :pagination-options="{
+    enabled: true,
+}" :pagination-options="{
     enabled: true,
     perPageDropdown: [10, 20, 50],
 }" styleClass="vgt-table striped bordered condensed" class="py-0">
@@ -190,7 +197,7 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
                 </span>
                 <span v-else-if="props.column.field == 'absensi'"> <button
                         class="tooltip text-sky-100 block rounded-md font-bold py-1 px-1 mr-2 flex items-center hover:text-sky-300 bg-sky-400 rounded-lg"
-                        data-tip="Detail">
+                        @click="doAbsensi(props.row.id, props.index)" data-tip="Detail">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -201,20 +208,9 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
 
 
                 </span>
-                <span v-else-if="props.column.field == 'jurnal'">
-                    <button
-                        class="tooltip text-sky-100 block rounded-md font-bold py-1 px-1 mr-2 flex items-center hover:text-sky-300 bg-sky-400 rounded-lg"
-                        data-tip="Detail">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
-                        </svg>
-                    </button>
-                </span>
-                <span v-else-if="props.column.field == 'penilaian'">
+                <span v-else-if="props.column.field == 'nilai_akhir'">
                     <button class="tooltip  font-bold py-1 px-1 mr-2 flex items-center btn btn-success btn-sm"
-                        data-tip="Detail">
+                        @click="doHasil(props.row.id, props.index)" data-tip="Detail">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
