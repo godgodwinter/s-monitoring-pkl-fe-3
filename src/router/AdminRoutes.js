@@ -165,7 +165,7 @@ const AdminRoutes = [
               },
             },
             component: () =>
-            import("@/views/penilai/siswa/SiswaAbsensi.vue"),
+              import("@/views/penilai/siswa/SiswaAbsensi.vue"),
           },
         ],
       },
@@ -180,15 +180,15 @@ const AdminRoutes = [
           breadcrumb: {
             name: "Mastering Pembimbing Lapangan",
             path: `pages/kepalajurusan/pembimbinglapangan`,
-            goto:`kepalajurusan-pembimbinglapangan`,
+            goto: `kepalajurusan-pembimbinglapangan`,
           },
         },
         component: () =>
           import(
             "@/views/kepalajurusan/pembimbinglapangan/PembimbinglapanganIndex.vue"
           )
-        },
-        
+      },
+
       {
         path: `pages/kepalajurusan/tempatpkl`,
         name: `kepalajurusan-tempatpkl`,
@@ -198,14 +198,14 @@ const AdminRoutes = [
           breadcrumb: {
             name: "Mastering Tempatpkl",
             path: `pages/kepalajurusan/tempatpkl`,
-            goto:`kepalajurusan-tempatpkl`,
+            goto: `kepalajurusan-tempatpkl`,
           },
         },
         component: () =>
           import(
             "@/views/kepalajurusan/tempatpkl/TempatpklIndex.vue"
           )
-        },
+      },
       {
         path: `${prefix}/penilaian/settings`,
         name: `${prefixName}penilaian-settings`,
@@ -507,6 +507,22 @@ const AdminRoutes = [
               import("@/views/penilai/siswa/nilai/SiswaNilaiIndex.vue"),
           },
         ],
+      },
+      {
+        path: `${prefix}/pendaftaran/index`,
+        name: `${prefixName}pendaftaran-index`,
+        meta: {
+          title: "Pendaftaran PKL",
+          breadcrumb: {
+            name: "Pendaftaran",
+            path: `${prefix}/pendaftaran/index`,
+            goto: `${prefixName}pendaftaran-index`,
+          },
+        },
+        component: () =>
+          import(
+            "@/views/kepalajurusan/pendaftaran/SubSidebarPendaftaran.vue"
+          ),
       },
     ],
   },

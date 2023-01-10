@@ -1,0 +1,127 @@
+<script setup>
+import { ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import Api from "@/axios/axios.js";
+import Toast from "@/components/lib/Toast.js";
+const dataList = ref(null);
+const getData = async () => {
+    try {
+        const response = await Api.get("kaprodi/pendaftaran/list/subsidebardata");
+        dataList.value = response.data;
+        return response;
+    } catch (error) {
+        Toast.danger("Warning", "Token anda kadaluarsa! Silahkan login kembali");
+        console.error(error);
+    }
+};
+
+getData();
+</script>
+<template>
+    <div class="container mx-auto lg:mx-0 my-5 p-5">
+        <div class="lg:flex no-wrap lg:-mx-2">
+            <!-- Left Side -->
+            <div class="w-full lg:w-3/12 lg:mx-2">
+                <div>
+                    <!-- Profile Card -->
+                    <div class="bg-white p-3 border-t-4 border-green-400">
+                        <div class="image overflow-hidden">
+                            <img class="h-20 w-20 mx-auto" src="@/assets/img/flat/portfolio_2.png" alt="" />
+                        </div>
+                        <p class="text-sm text-gray-500 hover:text-gray-600 leading-6 text-center pt-2">
+                            Menu - menu pedaftaran Prakerin / PKL
+                        </p>
+                        <ul
+                            class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                            <li class="flex items-center py-3">
+                                <span>Status Pendaftaran</span>
+                                <span class="ml-auto">
+                                    <div class="flex justify-center">
+                                        <Popper content="Aktif">
+                                            <template #content>
+                                                <div class="form-check form-switch">
+                                                    <input
+                                                        class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
+                                                        type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                                        checked />
+                                                </div>
+                                            </template>
+                                        </Popper>
+                                    </div>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End of profile card -->
+                    <div class="my-4"></div>
+                    <!-- Friends card -->
+                    <div class="bg-white p-3 hover:shadow h-screen">
+                        <div class="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
+                            <span class="text-green-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                </svg>
+                            </span>
+                            <span>Menu Utama</span>
+                        </div>
+                        <div class="grid grid-cols-2 xl:grid-cols-3">
+                            <!-- <router-link :to="{ name: 'ProsesTempatPKL' }"> -->
+                            <!-- <ButtonDataOne title="Tempat PKL" titleShort="DB"></ButtonDataOne> -->
+                            <button class="btn btn-info ">Penempatan</button>
+                            <!-- </router-link> -->
+                        </div>
+                        <div class="divider"></div>
+                        <div class="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
+                            <span class="text-green-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                </svg>
+                            </span>
+
+                            <p class="text-sm text-gray-500 hover:text-gray-600 leading-6 text-center pt-2">
+                                Menu - menu pedaftaran Prakerin / PKL
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-2 xl:grid-cols-3 gap-4" v-if="dataList">
+                            <!-- <router-link :to="{ name: 'ProsesTempatPKL' }"> -->
+                            <span class="text-center py-2">
+                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.siswa }}</button><br> Semua
+                                Siswa</span>
+                            <span class="text-center">
+                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.belumdaftar }}</button><br>
+                                Belum
+                                Daftar</span>
+                            <span class="text-center">
+                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.pengajuan }}</button><br>
+                                Pengajuan</span>
+                            <span class="text-center">
+                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.penempatan }}</button><br>
+                                Penempatan</span>
+                            <span class="text-center">
+                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.pemberkasan }}</button><br>
+                                Pemberkasan</span>
+                            <span class="text-center">
+                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.persetujuan }}</button><br>
+                                Persetujuan</span>
+                            <span class="text-center">
+                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.disetujui }}</button><br>
+                                Disetujui</span>
+                            <!-- </router-link> -->
+                        </div>
+                        <!-- <MenuInformasiPendaftaranPkl></MenuInformasiPendaftaranPkl> -->
+                    </div>
+                    <!-- End of Data Statistik card -->
+                </div>
+            </div>
+            <!-- Right Side -->
+            <div class="w-full lg:w-9/12 mx-2 h-64 pt-10 lg:pt-0">
+                <router-view />
+            </div>
+        </div>
+    </div>
+
+</template>
