@@ -58,7 +58,7 @@ const goTo = (name) => {
                         <div class="grid grid-cols-2 xl:grid-cols-3">
                             <!-- <router-link :to="{ name: 'admin-pendaftaran-index' }"> -->
                             <!-- <button class="btn btn-info " @click="goTo('admin-pendaftaran-index')">Penempatan</button> -->
-                            <span class="text-center py-2" @click="goTo('admin-pendaftaran-list-semuasiswa')">
+                            <span class="text-center py-2" @click="goTo('admin-pendaftaran-index')">
                                 <button class="btn btn-info btn-lg btn-circle">P</button><br>
                                 Penempatan
                                 Siswa</span>
