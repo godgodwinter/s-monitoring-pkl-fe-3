@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import Api from "@/axios/axios.js";
 import Toast from "@/components/lib/Toast.js";
+const router = useRouter();
 const dataList = ref(null);
 const getData = async () => {
     try {
@@ -16,6 +17,13 @@ const getData = async () => {
 };
 
 getData();
+
+const goTo = (name) => {
+    getData();
+    router.push({
+        name
+    })
+}
 </script>
 <template>
     <div class="container mx-auto lg:mx-0 my-5 p-5">
@@ -31,26 +39,7 @@ getData();
                         <p class="text-sm text-gray-500 hover:text-gray-600 leading-6 text-center pt-2">
                             Menu - menu pedaftaran Prakerin / PKL
                         </p>
-                        <ul
-                            class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                            <li class="flex items-center py-3">
-                                <span>Status Pendaftaran</span>
-                                <span class="ml-auto">
-                                    <div class="flex justify-center">
-                                        <Popper content="Aktif">
-                                            <template #content>
-                                                <div class="form-check form-switch">
-                                                    <input
-                                                        class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
-                                                        type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                                                        checked />
-                                                </div>
-                                            </template>
-                                        </Popper>
-                                    </div>
-                                </span>
-                            </li>
-                        </ul>
+
                     </div>
                     <!-- End of profile card -->
                     <div class="my-4"></div>
@@ -67,9 +56,12 @@ getData();
                             <span>Menu Utama</span>
                         </div>
                         <div class="grid grid-cols-2 xl:grid-cols-3">
-                            <!-- <router-link :to="{ name: 'ProsesTempatPKL' }"> -->
-                            <!-- <ButtonDataOne title="Tempat PKL" titleShort="DB"></ButtonDataOne> -->
-                            <button class="btn btn-info ">Penempatan</button>
+                            <!-- <router-link :to="{ name: 'admin-pendaftaran-index' }"> -->
+                            <!-- <button class="btn btn-info " @click="goTo('admin-pendaftaran-index')">Penempatan</button> -->
+                            <span class="text-center py-2" @click="goTo('admin-pendaftaran-list-semuasiswa')">
+                                <button class="btn btn-info btn-lg btn-circle">P</button><br>
+                                Penempatan
+                                Siswa</span>
                             <!-- </router-link> -->
                         </div>
                         <div class="divider"></div>
@@ -87,32 +79,62 @@ getData();
                             </p>
                         </div>
                         <div class="grid grid-cols-2 xl:grid-cols-3 gap-4" v-if="dataList">
-                            <!-- <router-link :to="{ name: 'ProsesTempatPKL' }"> -->
-                            <span class="text-center py-2">
-                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.siswa }}</button><br> Semua
+                            <!-- <router-link :to="{ name: 'admin-pendaftaran-list-semuasiswa' }" > -->
+                            <span class="text-center py-2" @click="goTo('admin-pendaftaran-list-semuasiswa')">
+                                <button class="btn btn-base-100 btn-lg btn-circle">{{ dataList.siswa }}</button><br>
+                                Semua
                                 Siswa</span>
-                            <span class="text-center">
-                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.belumdaftar }}</button><br>
+                            <!-- </router-link> -->
+                            <!-- <router-link :to="{ name: 'admin-pendaftaran-list-belumdaftar' }"> -->
+                            <span class="text-center" @click="goTo('admin-pendaftaran-list-belumdaftar')">
+                                <button class="btn btn-base-100 btn-lg btn-circle">{{
+                                    dataList.belumdaftar
+                                }}</button><br>
                                 Belum
                                 Daftar</span>
-                            <span class="text-center">
-                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.pengajuan }}</button><br>
+                            <!-- </router-link> -->
+                            <span class="text-center" @click="goTo('admin-pendaftaran-list-pengajuan')">
+                                <button class="btn btn-base-100 btn-lg btn-circle">{{ dataList.pengajuan }}</button><br>
                                 Pengajuan</span>
-                            <span class="text-center">
-                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.penempatan }}</button><br>
+                            <span class="text-center" @click="goTo('admin-pendaftaran-list-penempatan')">
+                                <button class="btn btn-base-100 btn-lg btn-circle">{{
+                                    dataList.penempatan
+                                }}</button><br>
                                 Penempatan</span>
-                            <span class="text-center">
-                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.pemberkasan }}</button><br>
+                            <span class="text-center" @click="goTo('admin-pendaftaran-list-pemberkasan')">
+                                <button class="btn btn-base-100 btn-lg btn-circle">{{
+                                    dataList.pemberkasan
+                                }}</button><br>
                                 Pemberkasan</span>
-                            <span class="text-center">
-                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.persetujuan }}</button><br>
+                            <span class="text-center" @click="goTo('admin-pendaftaran-list-persetujuan')">
+                                <button class="btn btn-base-100 btn-lg btn-circle">{{
+                                    dataList.persetujuan
+                                }}</button><br>
                                 Persetujuan</span>
-                            <span class="text-center">
-                                <button class="btn btn-accent btn-lg btn-circle">{{ dataList.disetujui }}</button><br>
+                            <span class="text-center" @click="goTo('admin-pendaftaran-list-disetujui')">
+                                <button class="btn btn-base-100 btn-lg btn-circle">{{ dataList.disetujui }}</button><br>
                                 Disetujui</span>
                             <!-- </router-link> -->
                         </div>
                         <!-- <MenuInformasiPendaftaranPkl></MenuInformasiPendaftaranPkl> -->
+                        <ul
+                            class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                            <li class="flex items-center py-3">
+                                <span>Menu Refresh Data Sidebar</span>
+                                <span class="ml-auto">
+                                    <div class="flex justify-center">
+                                        <button data-tip="Tombol Refresh Data" class="tooltip" @click="getData()">
+                                            <div class="form-check form-switch">
+                                                <button
+                                                    class="bg-emerald-600 py-2 px-2 rounded-full text-gray-100 text-xs font-bold">
+                                                    Refresh
+                                                </button>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                     <!-- End of Data Statistik card -->
                 </div>

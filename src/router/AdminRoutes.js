@@ -523,6 +523,121 @@ const AdminRoutes = [
           import(
             "@/views/kepalajurusan/pendaftaran/SubSidebarPendaftaran.vue"
           ),
+        redirect: `${prefix}/pendaftaran/proses/penempatan`,
+        children: [
+          {
+            path: `${prefix}/pendaftaran/proses/penempatan`,
+            name: `${prefixName}pendaftaran-proses-penempatan`,
+            meta: {
+              title: "Proses Penempatan",
+              breadcrumb: {
+                name: "Proses Penempatan",
+                path: `${prefix}/pendaftaran/proses/penempatan`,
+                goto: `${prefixName}pendaftaran-proses-penempatan`,
+              },
+            },
+            component: () =>
+              import("@/views/kepalajurusan/pendaftaran/ProsesPenempatan.vue"),
+          },
+          {
+            path: `${prefix}/pendaftaran/list/semuasiswa`,
+            name: `${prefixName}pendaftaran-list-semuasiswa`,
+            meta: {
+              title: "list semuasiswa",
+              breadcrumb: {
+                name: "list semuasiswa",
+                path: `${prefix}/pendaftaran/list/semuasiswa`,
+                goto: `${prefixName}pendaftaran-list-semuasiswa`,
+              },
+            },
+            component: () =>
+              import("@/views/kepalajurusan/pendaftaran/ListSemuaSiswa.vue"),
+          },
+          {
+            path: `${prefix}/pendaftaran/list/belumdaftar`,
+            name: `${prefixName}pendaftaran-list-belumdaftar`,
+            meta: {
+              title: "list belumdaftar",
+              breadcrumb: {
+                name: "list belumdaftar",
+                path: `${prefix}/pendaftaran/list/belumdaftar`,
+                goto: `${prefixName}pendaftaran-list-belumdaftar`,
+              },
+            },
+            component: () =>
+              import("@/views/kepalajurusan/pendaftaran/ListBelumDaftar.vue"),
+          },
+          {
+            path: `${prefix}/pendaftaran/list/pengajuan`,
+            name: `${prefixName}pendaftaran-list-pengajuan`,
+            meta: {
+              title: "list pengajuan",
+              breadcrumb: {
+                name: "list pengajuan",
+                path: `${prefix}/pendaftaran/list/pengajuan`,
+                goto: `${prefixName}pendaftaran-list-pengajuan`,
+              },
+            },
+            component: () =>
+              import("@/views/kepalajurusan/pendaftaran/ListPengajauan.vue"),
+          },
+          {
+            path: `${prefix}/pendaftaran/list/penempatan`,
+            name: `${prefixName}pendaftaran-list-penempatan`,
+            meta: {
+              title: "list penempatan",
+              breadcrumb: {
+                name: "list penempatan",
+                path: `${prefix}/pendaftaran/list/penempatan`,
+                goto: `${prefixName}pendaftaran-list-penempatan`,
+              },
+            },
+            component: () =>
+              import("@/views/kepalajurusan/pendaftaran/ListPenempatan.vue"),
+          },
+          {
+            path: `${prefix}/pendaftaran/list/pemberkasan`,
+            name: `${prefixName}pendaftaran-list-pemberkasan`,
+            meta: {
+              title: "list pemberkasan",
+              breadcrumb: {
+                name: "list pemberkasan",
+                path: `${prefix}/pendaftaran/list/pemberkasan`,
+                goto: `${prefixName}pendaftaran-list-pemberkasan`,
+              },
+            },
+            component: () =>
+              import("@/views/kepalajurusan/pendaftaran/ListPemberkasan.vue"),
+          },
+          {
+            path: `${prefix}/pendaftaran/list/persetujuan`,
+            name: `${prefixName}pendaftaran-list-persetujuan`,
+            meta: {
+              title: "list persetujuan",
+              breadcrumb: {
+                name: "list persetujuan",
+                path: `${prefix}/pendaftaran/list/persetujuan`,
+                goto: `${prefixName}pendaftaran-list-persetujuan`,
+              },
+            },
+            component: () =>
+              import("@/views/kepalajurusan/pendaftaran/ListPersetujuan.vue"),
+          },
+          {
+            path: `${prefix}/pendaftaran/list/disetujui`,
+            name: `${prefixName}pendaftaran-list-disetujui`,
+            meta: {
+              title: "list disetujui",
+              breadcrumb: {
+                name: "list disetujui",
+                path: `${prefix}/pendaftaran/list/disetujui`,
+                goto: `${prefixName}pendaftaran-list-disetujui`,
+              },
+            },
+            component: () =>
+              import("@/views/kepalajurusan/pendaftaran/ListDisetujui.vue"),
+          },
+        ],
       },
     ],
   },
