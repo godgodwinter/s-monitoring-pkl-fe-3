@@ -119,7 +119,11 @@ const doStorePersetujuan = async (status) => {
         );
         console.log(response.data);
         Toast.success("Info", "Proses berhasil");
-        router.push({ name: "admin-pendaftaran-list-disetujui" });
+        if (status == 'Disetujui') {
+            router.push({ name: "admin-pendaftaran-list-disetujui" });
+        } else {
+            router.push({ name: "admin-pendaftaran-list-penempatan" });
+        }
         return response;
     } catch (error) {
         Toast.danger("Warning", "Proses Gagal");
