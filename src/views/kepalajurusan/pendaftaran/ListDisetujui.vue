@@ -80,6 +80,11 @@ const columns = [
         field: "penilai_nama",
         type: "String",
     },
+    {
+        label: "TEMPAT PKL",
+        field: "tempatpkl_nama",
+        type: "String",
+    },
     // {
     //     label: "Status PKL", //aktif / nonaktif / disabled (telah lulus/keluar/dll)
     //     field: "pendaftaranprakerin",

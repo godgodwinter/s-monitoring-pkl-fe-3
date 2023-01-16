@@ -69,11 +69,11 @@ const columns = [
         field: "nomeridentitas",
         type: "String",
     },
-    {
-        label: "Status PKL", //aktif / nonaktif / disabled (telah lulus/keluar/dll)
-        field: "pendaftaranprakerin",
-        type: "String",
-    },
+    // {
+    //     label: "Status PKL", //aktif / nonaktif / disabled (telah lulus/keluar/dll)
+    //     field: "pendaftaranprakerin",
+    //     type: "String",
+    // },
 ];
 function doLanjutkanProses(id) {
     router.push({

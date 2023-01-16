@@ -16,7 +16,7 @@ let dataId = null;
 // function Form and Validation
 const getData = async () => {
     try {
-        const response = await Api.get("admin/pendaftaranpkl/list/getall");
+        const response = await Api.get("kaprodi/pendaftaran/list/getall");
         // console.log(response);
         // data.value = response.data;
         dataAsli.value = response.data;
@@ -69,11 +69,11 @@ const columns = [
         field: "nomeridentitas",
         type: "String",
     },
-    {
-        label: "Status PKL", //aktif / nonaktif / disabled (telah lulus/keluar/dll)
-        field: "pendaftaranprakerin",
-        type: "String",
-    },
+    // {
+    //     label: "Status PKL", //aktif / nonaktif / disabled (telah lulus/keluar/dll)
+    //     field: "pendaftaranprakerin",
+    //     type: "String",
+    // },
 ];
 
 // function doLanjutkanProses(id) {

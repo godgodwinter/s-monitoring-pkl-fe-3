@@ -69,6 +69,16 @@ const columns = [
         field: "nomeridentitas",
         type: "String",
     },
+    {
+        label: "Pilihan 1",
+        field: "tempatpkl_1",
+        type: "String",
+    },
+    {
+        label: "Pilihan 2",
+        field: "tempatpkl_2",
+        type: "String",
+    },
     // {
     //     label: "Status PKL", //aktif / nonaktif / disabled (telah lulus/keluar/dll)
     //     field: "pendaftaranprakerin",
