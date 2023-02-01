@@ -172,6 +172,40 @@ const AdminRoutes = [
 
       //GURU KEPALA JURUSAN
       {
+        path: `pages/kepalajurusan/kelas`,
+        name: `kepalajurusan-kelas`,
+        meta: {
+          title: "Mastering Kelas",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Mastering Kelas",
+            path: `pages/kepalajurusan/kelas`,
+            goto: `kepalajurusan-kelas`,
+          },
+        },
+        component: () =>
+          import(
+            "@/views/kepalajurusan/kelas/KelasIndex.vue"
+          )
+      },
+      {
+        path: `pages/kepalajurusan/kelas/nilai/:kelas_id`,
+        name: `kepalajurusan-kelas-nilai`,
+        meta: {
+          title: "Nilai",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Nilai",
+            path: `pages/kepalajurusan/kelas/nilai/:kelas_id`,
+            goto: `kepalajurusan-kelas-nilai`,
+          },
+        },
+        component: () =>
+          import(
+            "@/views/kepalajurusan/kelas/KelasNilai.vue"
+          )
+      },
+      {
         path: `pages/kepalajurusan/pembimbinglapangan`,
         name: `kepalajurusan-pembimbinglapangan`,
         meta: {

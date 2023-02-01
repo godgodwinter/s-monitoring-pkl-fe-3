@@ -132,8 +132,8 @@ const doPenilaianPembimbingLapangan = async (id, index) => {
     <div>
 
         <vue-good-table :line-numbers="true" :columns="columns" :rows="data" :search-options="{
-    enabled: true,
-}" :pagination-options="{
+            enabled: true,
+        }" :pagination-options="{
     enabled: true,
     perPageDropdown: [10, 20, 50],
 }" styleClass="vgt-table striped bordered condensed" class="py-0">
