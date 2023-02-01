@@ -136,17 +136,17 @@ const doCetak = (id = id) => {
                     </tr>
                     <tr>
                         <th></th>
-                        <td>Nilai Akhir</td>
-                        <td>{{ dataHasil.penilaian_guru_rekap }}</td>
+                        <td><span class="font-bold">Nilai Akhir</span></td>
+                        <td><span class="font-bold">{{ dataHasil.penilaian_guru_rekap }}</span></td>
                     </tr>
                 </tbody>
-                <tfoot>
+                <!-- <tfoot>
                     <tr>
                         <th></th>
                         <th>Nama Aspek</th>
                         <th>Nilai</th>
                     </tr>
-                </tfoot>
+                </tfoot> -->
             </table>
         </div>
     </div>
@@ -184,8 +184,8 @@ const doCetak = (id = id) => {
                     </tr>
                     <tr>
                         <th></th>
-                        <td>Nilai Akhir</td>
-                        <td>{{ dataHasil.penilaian_pembimbinglapangan_rekap }}</td>
+                        <td><span class="font-bold">Nilai Akhir</span></td>
+                        <td><span class="font-bold">{{ dataHasil.penilaian_pembimbinglapangan_rekap }}</span></td>
                     </tr>
                 </tbody>
                 <!-- <tfoot>
@@ -225,17 +225,17 @@ const doCetak = (id = id) => {
                     </tr>
                     <tr>
                         <th></th>
-                        <td>Nilai Akhir</td>
-                        <td>{{ dataHasil.penilaian_absensi_rekap }}</td>
+                        <td><span class="font-bold">Nilai Akhir</span></td>
+                        <td><span class="font-bold">{{ dataHasil.penilaian_absensi_rekap }}</span></td>
                     </tr>
                 </tbody>
-                <tfoot>
+                <!-- <tfoot>
                     <tr>
                         <th></th>
                         <th>Nama Aspek</th>
                         <th>Nilai</th>
                     </tr>
-                </tfoot>
+                </tfoot> -->
             </table>
         </div>
 
@@ -267,8 +267,8 @@ const doCetak = (id = id) => {
                     </tr>
                     <tr>
                         <th></th>
-                        <td>Nilai Akhir</td>
-                        <td>{{ dataHasil.penilaian_jurnal_rekap }}</td>
+                        <td><span class="font-bold">Nilai Akhir</span></td>
+                        <td><span class="font-bold">{{ dataHasil.penilaian_jurnal_rekap }}</span></td>
                     </tr>
                 </tbody>
                 <!-- <tfoot>
@@ -324,9 +324,9 @@ const doCetak = (id = id) => {
                     </tr>
                     <tr>
                         <th></th>
-                        <td>Nilai Akhir</td>
-                        <td>{{ dataHasil.penilaian_nilaiakhir_setting_persentase }}</td>
-                        <td>{{ dataHasil.nilaiakhir }}</td>
+                        <td><span class="font-bold">Nilai Akhir</span></td>
+                        <td><span class="font-bold">{{ dataHasil.penilaian_nilaiakhir_setting_persentase }}</span></td>
+                        <td><span class="font-bold">{{ dataHasil.nilaiakhir }}</span></td>
                     </tr>
                 </tbody>
                 <!-- <tfoot>

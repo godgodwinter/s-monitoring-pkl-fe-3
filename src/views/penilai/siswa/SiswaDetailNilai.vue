@@ -10,11 +10,6 @@ import ButtonEdit from "@/components/atoms/ButtonEdit.vue";
 import ButtonDelete from "@/components/atoms/ButtonDel.vue";
 import { useStoreAdminAuth } from "@/stores/adminAuth";
 import { useStoreAdmin } from "@/stores/admin";
-
-const BASE_URL = import.meta.env.VITE_API_URL
-    ? import.meta.env.VITE_API_URL
-    : "http://localhost:8000/";
-
 const storeAdminAuth = useStoreAdminAuth();
 const jurusan = computed(() => storeAdminAuth.jurusan);
 const storeAdmin = useStoreAdmin();
@@ -30,7 +25,7 @@ let dataId = null;
 // function Form and Validation
 const getData = async () => {
     try {
-        const response = await Api.get(`kaprodi/datakelas/nilai/${kelas_id}`);
+        const response = await Api.get(`guru/dataku/penilai/siswa/detailnilai`);
         response.data.forEach(element => {
             // console.log(response.data, jurusan.value.id == element.jurusan);
 
@@ -99,15 +94,6 @@ const doHasil = async (id, index) => {
         params: { id: id },
     });
 };
-const doExport = () => {
-    if (kelas_id === null) {
-        Toast.danger("Warning", "Data tidak valid!");
-    } else {
-        window.open(
-            `${BASE_URL}api/kaprodi/datakelas/nilai/${kelas_id}/export`
-        );
-    }
-}
 </script>
 <template>
     <BreadCrumb>
@@ -120,13 +106,6 @@ const doExport = () => {
         <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-700 shadow-sm">Detail Nilai</span>
     </div>
 
-    <div class="pt-4 px-10">
-        <button @click="router.go(-1)" class="btn btn-sm btn-secondary">Kembali</button>
-    </div>
-
-    <div class="pt-4 px-10">
-        <button @click="doExport()" class="btn btn-sm btn-secondary">Export .xlsx</button>
-    </div>
 
     <div class="pt-6 px-4 lg:flex flex-wrap gap-4">
         <div class="w-full lg:w-full">

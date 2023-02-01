@@ -511,6 +511,20 @@ const AdminRoutes = [
         component: () => import("@/views/penilai/siswa/SiswaIndex.vue"),
       },
       {
+        path: `${prefix}/penilai/siswa/detailnilai`,
+        name: `${prefixName}penilai-siswa-detailnilai`,
+        meta: {
+          title: "Siswa",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Siswa",
+            path: `${prefix}/penilai/siswa/detailnilai`,
+            goto: `${prefixName}penilai-siswa-detailnilai`,
+          },
+        },
+        component: () => import("@/views/penilai/siswa/SiswaDetailNilai.vue"),
+      },
+      {
         path: `${prefix}/penilai/siswalayout`,
         name: `${prefixName}penilai-siswalayout`,
         meta: {
