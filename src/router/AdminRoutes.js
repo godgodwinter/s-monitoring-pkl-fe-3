@@ -511,8 +511,22 @@ const AdminRoutes = [
         component: () => import("@/views/penilai/siswa/SiswaIndex.vue"),
       },
       {
-        path: `${prefix}/penilai/siswa/detailnilai`,
-        name: `${prefixName}penilai-siswa-detailnilai`,
+        path: `${prefix}/pembimbing/siswa/detailnilai`,
+        name: `${prefixName}pembimbing-siswa-detailnilai`,
+        meta: {
+          title: "Siswa",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Siswa",
+            path: `${prefix}/pembimbing/siswa/detailnilai`,
+            goto: `${prefixName}pembimbing-siswa-detailnilai`,
+          },
+        },
+        component: () => import("@/views/penilai/siswa/SiswaDetailNilai.vue"),
+      },
+      {
+        path: `${prefix}/pembimbing/siswa/detailnilai`,
+        name: `${prefixName}pembimbing-siswa-detailnilai`,
         meta: {
           title: "Siswa",
           icon: "mdi-home",
@@ -522,7 +536,7 @@ const AdminRoutes = [
             goto: `${prefixName}penilai-siswa-detailnilai`,
           },
         },
-        component: () => import("@/views/penilai/siswa/SiswaDetailNilai.vue"),
+        component: () => import("@/views/admin/siswa/GuruSiswaDetailNilai.vue"),
       },
       {
         path: `${prefix}/penilai/siswalayout`,
