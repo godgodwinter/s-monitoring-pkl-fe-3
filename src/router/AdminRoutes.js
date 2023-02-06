@@ -538,6 +538,22 @@ const AdminRoutes = [
         },
         component: () => import("@/views/admin/siswa/GuruSiswaDetailNilai.vue"),
       },
+
+      {
+        path: `${prefix}/siswaabsensi/:id`,
+        name: `${prefixName}siswaabsensi-index`,
+        meta: {
+          title: "Profile",
+          icon: "mdi-home",
+          breadcrumb: {
+            name: "Profile",
+            path: `${prefix}/siswaabsensi/:id`,
+            goto: `${prefixName}siswaabsensi-index`,
+          },
+        },
+        component: () =>
+          import("@/views/admin/siswa/detail/SiswaAbsensiIndex.vue"),
+      },
       {
         path: `${prefix}/penilai/siswalayout`,
         name: `${prefixName}penilai-siswalayout`,
